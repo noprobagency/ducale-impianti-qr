@@ -227,13 +227,9 @@ footer .rule{ height:1px; background:linear-gradient(to right,transparent,var(--
   html{ scroll-behavior:auto; }
 }
 
-/* ═══ 6. Desktop: identità fissa a sinistra ═══ */
+/* ═══ 6. Desktop: colonna unica, centrata ═══ */
 @media (min-width:940px){
-  .wrap{ max-width:1000px; display:grid; grid-template-columns:340px 1fr; gap:64px; align-items:start; padding-top:76px; padding-bottom:76px; }
-  .col-id{ position:sticky; top:76px; }
-  .identity{ text-align:left; }
-  .mark{ margin-inline:0; }
-  .actions{ margin-bottom:0; }
+  .wrap{ padding-top:76px; padding-bottom:76px; }
 }
 </style>
 </head>
