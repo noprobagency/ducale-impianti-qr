@@ -1,12 +1,33 @@
-# Landing QR — Ducale Impianti S.r.l.
+# Landing QR — Gruppo Ducale
 
-Pagina statica singola raggiunta dal QR code stampato. Nessuna dipendenza:
-niente framework, niente build, niente npm. Si apre anche con un doppio clic
-su `card/index.html`.
+Due pagine statiche gemelle, raggiunte dai rispettivi QR code stampati, una per
+azienda del gruppo. Nessuna dipendenza: niente framework, niente build, niente
+npm. Si aprono anche con un doppio clic sull'`index.html`.
+
+| Cartella | Azienda | Destinazione |
+|---|---|---|
+| `card/` | Ducale Impianti S.r.l. | `https://www.ducaleimpianti.com/card/` |
+| `elettrica/` | Elettrica Ducale S.r.l. | `https://www.elettricaducale.it/card/` |
+
+Le due aziende hanno siti distinti, quindi ogni pagina va sul dominio della
+propria azienda, in entrambi i casi nella cartella `card/`. In anteprima
+convivono sullo stesso indirizzo solo perche' e' un unico deploy.
+
+**La pagina di Elettrica Ducale non si modifica a mano:** si genera da quella di
+Ducale Impianti, cosi' le due non divergono a ogni giro di correzioni.
+
+```bash
+python3 _source/make-elettrica.py
+```
+
+Lo script si ferma con un errore se un testo che deve sostituire non esiste
+piu': se hai cambiato la pagina di Ducale Impianti in un punto che lo riguarda,
+te ne accorgi subito invece di ritrovarti dati vecchi nella pagina gemella.
 
 ## Cosa caricare
 
-Va online **solo il contenuto della cartella `card/`**:
+Va online **solo il contenuto della cartella dell'azienda** (`card/` oppure
+`elettrica/`):
 
 ```
 card/
@@ -20,8 +41,10 @@ card/
     └── apple-touch-icon.png
 ```
 
-`_source/` resta in locale e non va mai caricata sull'hosting: contiene il logo
-sorgente e lo script che rigenera le favicon.
+Ogni cartella ha il proprio `img/`, con logo e favicon della sua azienda.
+
+`_source/` resta in locale e non va mai caricata sull'hosting: contiene i loghi
+sorgente e gli script che generano immagini e pagina gemella.
 
 ## Destinazione
 
@@ -67,11 +90,13 @@ direttamente da Apache, senza passare dal CMS.
    varianti in `http://` rispondono tutte `301` verso
    `https://www.ducaleimpianti.com/`. La forma canonica è quindi **con `www` e
    in `https`** — nel QR va `https://www.ducaleimpianti.com/card/`.
-6. **Aggiornamenti futuri.** Si modifica solo `card/index.html`. I dati degli
-   uffici stanno nell'array `DESKS` in cima allo script, in fondo al file; i
-   colori nel blocco `:root`, all'inizio del CSS.
+6. **Aggiornamenti futuri.** Si modifica solo `card/index.html`, poi si rigenera
+   la pagina gemella. I dati degli uffici stanno nell'array `DESKS` in cima allo
+   script, in fondo al file; i colori nel blocco `:root`, all'inizio del CSS.
+   Quello che e' specifico di Elettrica Ducale — dati, colori, nono ufficio —
+   sta tutto in `_source/make-elettrica.py`.
 
-## Rigenerare le favicon
+## Rigenerare logo e favicon
 
 Serve Pillow (`pip install pillow`, oppure
 `pip install pillow --break-system-packages` se il sistema lo richiede).
@@ -81,11 +106,30 @@ Dalla radice del progetto:
 python3 _source/make-favicons.py
 ```
 
-Lo script parte da `_source/Logo-ED.webp`, salva il logo completo in
-`card/img/logo.png` e ricava le favicon dal solo monogramma circolare,
-tagliando via la fascia inferiore con la scritta *dal 1973* — a 16 o 32 pixel
-diventerebbe una macchia illeggibile. L'`apple-touch-icon` ha fondo bianco
-perché iOS non gestisce la trasparenza nelle icone della schermata home.
+Senza argomenti fa entrambe le aziende; `python3 _source/make-favicons.py
+elettrica` ne fa una sola.
+
+Parte dalle lockup in `_source/`, che sono JPEG su fondo bianco: lo sfondo viene
+scontornato ricavando l'alfa, poi si ritagliano tre pezzi diversi perche'
+servono a cose diverse.
+
+- `logo.png` — il solo marchio (GRUPPO + cerchio + *dal 1973*), per il riquadro
+  in cima alla pagina. Il taglio fra marchio e scritta viene trovato da solo,
+  cercando il corridoio bianco piu' largo.
+- `logo-lockup.png` — la lockup intera, se un giorno servisse a piena larghezza.
+- `favicon-*` — il solo cerchio. GRUPPO e *dal 1973* a 16 pixel diventano
+  macchie illeggibili. Il cerchio si ricava per geometria: la riga piu' larga e'
+  l'equatore, quella larghezza e' il diametro. Non si puo' cercare la banda
+  "piu' larga di X", perche' in una circonferenza le righe si stringono proprio
+  in cima e in fondo e la soglia mangerebbe le calotte.
+
+Due accorgimenti che sembrano dettagli e non lo sono:
+
+- Sotto i 32 pixel l'alfa viene alzata con una gamma < 1. Il marchio di
+  Elettrica Ducale e' disegnato a filo, non pieno: senza quel ritocco alla
+  dimensione della linguetta del browser sbiancava fino a sparire.
+- L'`apple-touch-icon` ha fondo bianco, perche' iOS non gestisce la trasparenza
+  nelle icone della schermata home.
 
 ## Tracciamento delle scansioni
 
@@ -109,9 +153,11 @@ trasformerebbero il materiale già stampato in carta straccia.
 - **Link LinkedIn.** Oggi è un segnaposto che al clic avvisa che manca. Quando
   arriva l'indirizzo: sostituire l'`href` e togliere l'attributo
   `data-placeholder`.
-- **Verifica del logo.** Il monogramma è `ED`, di Elettrica Ducale. Se Ducale
-  Impianti ha un marchio proprio diverso, va sostituito `_source/Logo-ED.webp` e
-  rieseguito lo script delle favicon.
+- **Risoluzione dei loghi.** Le lockup arrivate sono JPEG: 740x268 px per Ducale
+  Impianti, 1401x542 per Elettrica Ducale. Il marchio ritagliato di Ducale
+  Impianti resta 179x268 px, appena sufficiente per il riquadro su schermi 2x e
+  tirato su schermi 3x. Se si recupera la versione vettoriale (SVG, EPS o PDF)
+  vale la pena rigenerare tutto da quella.
 
 ## Bozze di sfondo (temporanee)
 
