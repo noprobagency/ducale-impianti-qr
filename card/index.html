@@ -70,26 +70,19 @@ body{
 
 /* ═══ 3. Intestazione ═══ */
 .identity{ text-align:center; }
-.mark{
-  width:116px; height:116px; margin:0 auto 20px; display:grid; place-items:stretch;
-  padding:9px; border-radius:24px; overflow:hidden;
+/* Il marchio e' la lockup intera: il nome dell'azienda e' dentro l'immagine,
+   quindi l'h1 non ripete il testo e porta il nome nell'alt. */
+h1.mark{
+  margin:0 auto 16px; padding:18px 20px;
+  width:100%; max-width:300px;
+  border-radius:20px;
   background:var(--glass-hi);
   border:1px solid var(--hairline);
   box-shadow:var(--shadow), inset 0 1px 0 #fff;
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
 }
-/* min-height:0 e' quello che conta: sugli elementi di una griglia il minimo
-   automatico impone l'altezza intrinseca dell'immagine, che con questo marchio
-   vale 128px contro i 96px della cella, e il logo sbordava finendo tagliato.
-   Il margine sta sul riquadro, la griglia e' in stretch perche' height:100%
-   abbia un riferimento definito. */
-.mark img{ width:100%; height:100%; min-height:0; object-fit:contain; }
-
-h1{
-  font-family:"Lato",sans-serif; font-weight:900;
-  font-size:clamp(28px,7.4vw,36px); line-height:1.12; letter-spacing:-.015em; margin:0 0 8px;
-}
-h1 em{ display:block; font-style:normal; font-size:.5em; font-weight:400; letter-spacing:.16em; color:var(--text-faint); margin-top:9px; text-transform:uppercase; }
+h1.mark img{ display:block; width:100%; height:auto; }
+.legalese{ margin:0 0 10px; font-size:11px; font-weight:700; letter-spacing:.16em; color:var(--text-faint); text-transform:uppercase; }
 .tagline{ margin:0; color:var(--text-dim); font-size:14.5px; }
 .tagline strong{ color:var(--text); font-weight:700; }
 
@@ -237,8 +230,8 @@ footer .rule{ height:1px; background:linear-gradient(to right,transparent,var(--
 
   <div class="col-id">
     <header class="identity rise" style="animation-delay:.04s">
-      <div class="mark"><img src="img/logo.png" alt="" width="179" height="268"></div>
-      <h1>Ducale Impianti<em>S.r.l. · Socio unico</em></h1>
+      <h1 class="mark"><img src="img/logo-lockup.png" alt="Gruppo Ducale Impianti S.r.l. — Costruzioni Tecnologiche" width="734" height="268"></h1>
+      <p class="legalese">S.r.l. · Socio unico</p>
       <p class="tagline"><strong>Cividale del Friuli</strong> — riferimenti societari e contatti diretti degli uffici.</p>
     </header>
 

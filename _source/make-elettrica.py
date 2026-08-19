@@ -63,10 +63,8 @@ CAMBI = [
      "background:color-mix(in srgb, var(--brand-2) 9%, transparent); }"),
 
     # --- marchio e testata ---
-    ('<img src="img/logo.png" alt="" width="179" height="268">',
-     '<img src="img/logo.png" alt="" width="406" height="542">'),
-    ("<h1>Ducale Impianti<em>S.r.l. · Socio unico</em></h1>",
-     "<h1>Elettrica Ducale<em>S.r.l. · Socio unico</em></h1>"),
+    ('<img src="img/logo-lockup.png" alt="Gruppo Ducale Impianti S.r.l. — Costruzioni Tecnologiche" width="734" height="268">',
+     '<img src="img/logo-lockup.png" alt="Gruppo Elettrica Ducale S.r.l. — Automazione industriale" width="960" height="371">'),
 
     # --- contatti ---
     ('href="mailto:info@ducaleimpianti.com"', 'href="mailto:info@elettricaducale.it"'),

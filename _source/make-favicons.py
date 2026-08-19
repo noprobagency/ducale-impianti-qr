@@ -129,6 +129,12 @@ def rinforza(img, gamma=0.45):
     return img
 
 
+def alleggerisci(img, colori=64):
+    """Riduce a tavolozza: il marchio ha pochi colori piatti, ma il PNG a
+    colore pieno li salva come una fotografia e pesa cinque volte tanto."""
+    return img.quantize(colors=colori, method=Image.FASTOCTREE)
+
+
 def inscrivi(img, lato, margine=0.05, fondo=None):
     """Inscrive l'immagine in un quadrato con margine, senza deformarla."""
     interno = int(lato * (1 - margine * 2))
@@ -149,12 +155,17 @@ def genera(cartella, file_logo, nome):
 
     sorgente = smatta_bianco(Image.open(src))
     lockup = sorgente.crop(sorgente.getbbox())
-    lockup.save(out / "logo-lockup.png", optimize=True)
+    # in pagina la lockup sta in circa 320 px: oltre i 960 si pagherebbero
+    # centinaia di KB che nessuno schermo, nemmeno a 3x, arriva a mostrare
+    if lockup.width > 960:
+        lockup = lockup.resize(
+            (960, round(lockup.height * 960 / lockup.width)), Image.LANCZOS)
+    alleggerisci(lockup).save(out / "logo-lockup.png", optimize=True)
 
     x = taglio_marchio(Image.open(src).convert("RGB"))
     marchio = sorgente.crop((0, 0, x, sorgente.height))
     marchio = marchio.crop(marchio.getbbox())
-    marchio.save(out / "logo.png", optimize=True)
+    alleggerisci(marchio).save(out / "logo.png", optimize=True)
 
     riquadro, raggio = riquadro_cerchio(marchio)
     cerchio = fuori_dal_cerchio(marchio.crop(riquadro), raggio)
@@ -163,7 +174,8 @@ def genera(cartella, file_logo, nome):
         icona = inscrivi(cerchio, s)
         if s <= 32:                       # piu' si rimpicciolisce, piu' serve corpo
             icona = rinforza(icona, 0.28 if s <= 16 else 0.45)
-        icona.save(out / f"favicon-{s}.png", optimize=True)
+        (alleggerisci(icona) if s >= 192 else icona).save(
+            out / f"favicon-{s}.png", optimize=True)
 
     rinforza(inscrivi(cerchio, 256), 0.75).save(
         out / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
