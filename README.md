@@ -112,3 +112,24 @@ trasformerebbero il materiale già stampato in carta straccia.
 - **Verifica del logo.** Il monogramma è `ED`, di Elettrica Ducale. Se Ducale
   Impianti ha un marchio proprio diverso, va sostituito `_source/Logo-ED.webp` e
   rieseguito lo script delle favicon.
+
+## Bozze di sfondo (temporanee)
+
+`bozze/` contiene tre copie della pagina che differiscono solo per il fondo,
+usate per far scegliere la variante al cliente:
+
+| Cartella | Variante |
+|---|---|
+| `bozze/1-aloni/` | Aloni sfumati — è quella attualmente in `card/` |
+| `bozze/2-blu/`   | Velatura verticale nel blu del marchio |
+| `bozze/3-grana/` | Aloni con grana finissima |
+
+Si rigenerano da `card/index.html` con:
+
+```bash
+python3 _source/make-bozze-sfondi.py
+```
+
+Quando la variante è scelta, si riporta il suo blocco CSS dentro
+`card/index.html` e **si cancella la cartella `bozze/`**: non va mai caricata
+sull'hosting, come `_source/` e `vercel.json`.

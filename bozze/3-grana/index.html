@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ducale Impianti S.r.l. — Contatti ufficiali</title>
+<title>[Aloni con grana] Ducale Impianti S.r.l. — Contatti ufficiali</title>
 <meta name="description" content="Riferimenti societari, dati fiscali e contatti diretti degli uffici di Ducale Impianti S.r.l., Cividale del Friuli (UD).">
 <meta name="theme-color" content="#F6F7FA">
 <meta name="robots" content="noindex, follow">
@@ -222,6 +222,14 @@ footer .rule{ height:1px; background:linear-gradient(to right,transparent,var(--
 /* ═══ 6. Desktop: colonna unica, centrata ═══ */
 @media (min-width:940px){
   .wrap{ padding-top:76px; padding-bottom:76px; }
+}
+
+/* Sfondo 3 — aloni con grana finissima al posto del reticolo */
+.bg::after{
+  content:""; position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:170px 170px;
+  opacity:.3; mix-blend-mode:multiply;
 }
 </style>
 </head>
