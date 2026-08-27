@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 AZIENDE = {
     "card":      ("Logo-Gruppo-Ducale-Impianti.jpg",  "Ducale Impianti"),
     "elettrica": ("Logo-Gruppo-Elettrica-Ducale.jpg", "Elettrica Ducale"),
+    "officina":  ("Logo-Gruppo-Officina-Carpenteria.png", "Officina di carpenteria"),
 }
 
 SOGLIA = 235   # sopra questo livello il pixel e' considerato sfondo

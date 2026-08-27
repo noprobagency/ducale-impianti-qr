@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>[Velatura blu] Ducale Impianti S.r.l. — Contatti ufficiali</title>
-<meta name="description" content="Riferimenti societari, dati fiscali e contatti diretti degli uffici di Ducale Impianti S.r.l., Cividale del Friuli (UD).">
-<meta name="theme-color" content="#F6F7FA">
+<title>Officina di carpenteria — Elettrica Ducale S.r.l.</title>
+<meta name="description" content="Sedi, dati fiscali e contatti diretti dell'officina di carpenteria leggera di Elettrica Ducale S.r.l., Cividale del Friuli (UD).">
+<meta name="theme-color" content="#F5F8F6">
 <meta name="robots" content="noindex, follow">
 
 <link rel="icon" href="img/favicon.ico" sizes="any">
@@ -15,13 +15,13 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Ducale Impianti S.r.l. — Contatti ufficiali">
+<meta property="og:title" content="Officina di carpenteria — Elettrica Ducale S.r.l.">
 <meta property="og:description" content="Dati societari, fiscali e contatti diretti degli uffici.">
 <meta property="og:locale" content="it_IT">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════════════════════════════════════════════════
@@ -29,13 +29,13 @@
    Colori campionati dal logo: rosso #FF0000, blu #0070DC
    ═══════════════════════════════════════════════════════════ */
 :root{
-  --brand:        #FF0000;   /* rosso logo — riempimenti, morsetti */
-  --brand-ink:    #D6000A;   /* rosso scurito — testi e link su chiaro */
-  --brand-2:      #0070DC;   /* blu logo — accento secondario */
+  --brand:        #307048;   /* verde logo — riempimenti, morsetti */
+  --brand-ink:    #2A6440;   /* verde scurito — testi e link su chiaro (6.5:1 su bianco) */
+  --brand-2:      #6E8F7A;   /* verde grigio — accento secondario */
   --brand-warn:   #8A4B00;   /* ambra scura — nota sul codice SDI */
   --brand-warn-bg:#FFE7B0;
 
-  --page:      #F6F7FA;
+  --page:      #F5F8F6;
   --text:      #131A26;
   --text-dim:  #55627A;
   --text-faint:#64728C;
@@ -62,9 +62,9 @@ body{
 /* Fondo: solo aloni morbidi di colore, nessuna trama */
 .bg{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
 .bg i{ position:absolute; border-radius:50%; filter:blur(70px); }
-.bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; background:color-mix(in srgb, var(--brand) 20%, transparent); }
-.bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; background:color-mix(in srgb, var(--brand-2) 20%, transparent); }
-.bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; background:color-mix(in srgb, var(--brand-2) 11%, transparent); }
+.bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; background:color-mix(in srgb, var(--brand) 26%, transparent); }
+.bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; background:color-mix(in srgb, var(--brand-2) 26%, transparent); }
+.bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; background:color-mix(in srgb, var(--brand) 12%, transparent); }
 
 .wrap{ position:relative; z-index:1; width:100%; max-width:520px; margin-inline:auto; padding:clamp(30px,7vw,50px) 20px 56px; }
 
@@ -73,7 +73,7 @@ body{
 /* Il marchio e' la lockup intera: il nome dell'azienda e' dentro l'immagine,
    quindi l'h1 non ripete il testo e porta il nome nell'alt. */
 h1.mark{
-  margin:0 auto 16px; padding:18px 20px;
+  margin:0 auto; padding:18px 20px;
   width:100%; max-width:300px;
   border-radius:20px;
   background:var(--glass-hi);
@@ -82,9 +82,6 @@ h1.mark{
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
 }
 h1.mark img{ display:block; width:100%; height:auto; }
-.legalese{ margin:0 0 10px; font-size:11px; font-weight:700; letter-spacing:.16em; color:var(--text-faint); text-transform:uppercase; }
-.tagline{ margin:0; color:var(--text-dim); font-size:14.5px; }
-.tagline strong{ color:var(--text); font-weight:700; }
 
 /* ═══ 4. Tre azioni in fila ═══ */
 .actions{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:28px 0 34px; }
@@ -101,9 +98,9 @@ h1.mark img{ display:block; width:100%; height:auto; }
 .action svg{ width:22px; height:22px; stroke:var(--brand-ink); fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
 .action small{ display:block; color:var(--text-faint); font-size:11.5px; font-weight:400; margin-top:3px; letter-spacing:.01em; }
 .action--primary{
-  background:linear-gradient(160deg,#FF2020,#DD000C);
-  border-color:#C8000A; color:#fff;
-  box-shadow:0 10px 26px rgba(214,0,10,.28), inset 0 1px 0 rgba(255,255,255,.34);
+  background:linear-gradient(160deg,#3E8A5A,#2A6440);
+  border-color:#245537; color:#fff;
+  box-shadow:0 10px 26px rgba(42,100,64,.28), inset 0 1px 0 rgba(255,255,255,.34);
 }
 .action--primary svg{ stroke:#fff; }
 .action--primary small{ color:rgba(255,255,255,.92); }
@@ -146,7 +143,7 @@ h1.mark img{ display:block; width:100%; height:auto; }
 .datum{ display:flex; align-items:center; gap:12px; padding:13px 15px; }
 .datum + .datum{ border-top:1px solid var(--hairline-2); }
 .datum .k{ font:700 10.5px/1 "Lato",sans-serif; letter-spacing:.13em; text-transform:uppercase; color:var(--text-faint); margin-bottom:5px; }
-.datum .v{ font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:15.5px; letter-spacing:.02em; word-break:break-all; }
+.datum .v{ font-family:"Lato",sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em; word-break:break-all; }
 .datum .body{ flex:1; min-width:0; }
 .datum .note{ display:flex; gap:6px; align-items:flex-start; margin:7px 0 0; font-size:12.5px; line-height:1.4; color:var(--brand-warn); }
 .datum .note svg{ width:13px; height:13px; flex:none; margin-top:2px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; }
@@ -185,7 +182,7 @@ h1.mark img{ display:block; width:100%; height:auto; }
 /* Stati */
 @media (hover:hover){
   .action:hover,.links a:hover{ transform:translateY(-2px); border-color:color-mix(in srgb, var(--brand) 34%, transparent); box-shadow:0 18px 44px rgba(19,32,60,.13), inset 0 1px 0 #fff; }
-  .action--primary:hover{ border-color:#A80008; box-shadow:0 16px 34px rgba(214,0,10,.34), inset 0 1px 0 rgba(255,255,255,.34); }
+  .action--primary:hover{ border-color:#1D452C; box-shadow:0 16px 34px rgba(42,100,64,.34), inset 0 1px 0 rgba(255,255,255,.34); }
   .desk:hover{ background:rgba(255,255,255,.7); }
   .copy:hover{ background:#fff; color:var(--text); border-color:color-mix(in srgb, var(--brand) 32%, transparent); }
 }
@@ -221,11 +218,10 @@ footer .rule{ height:1px; background:linear-gradient(to right,transparent,var(--
   .wrap{ padding-top:76px; padding-bottom:76px; }
 }
 
-/* Sfondo 2 — velatura verticale nel blu del marchio, niente trama */
-.bg::after{ display:none; }
-body{ background:linear-gradient(180deg,#E7EFFA 0%,#F4F7FC 38%,#FDFDFE 100%); }
-.bg i:nth-child(1){ opacity:.5; }
-.bg i:nth-child(3){ opacity:.75; }
+/* Officina: due sedi nella stessa targa, separate da un filo */
+.venue .k{ font:700 10.5px/1 "Lato",sans-serif; letter-spacing:.13em; text-transform:uppercase;
+           color:var(--text-faint); margin-bottom:7px; }
+.venue--altra{ border-top:1px solid var(--hairline-2); }
 </style>
 </head>
 <body>
@@ -236,9 +232,7 @@ body{ background:linear-gradient(180deg,#E7EFFA 0%,#F4F7FC 38%,#FDFDFE 100%); }
 
   <div class="col-id">
     <header class="identity rise" style="animation-delay:.04s">
-      <h1 class="mark"><img src="img/logo-lockup.png" alt="Gruppo Ducale Impianti S.r.l. — Costruzioni Tecnologiche" width="734" height="268"></h1>
-      <p class="legalese">S.r.l. · Socio unico</p>
-      <p class="tagline"><strong>Cividale del Friuli</strong> — riferimenti societari e contatti diretti degli uffici.</p>
+      <h1 class="mark"><img src="img/logo-lockup.png" alt="Gruppo Elettrica Ducale S.r.l. — Officina di carpenteria leggera" width="960" height="374"></h1>
     </header>
 
     <nav class="actions rise" style="animation-delay:.1s" aria-label="Azioni rapide">
@@ -246,13 +240,13 @@ body{ background:linear-gradient(180deg,#E7EFFA 0%,#F4F7FC 38%,#FDFDFE 100%); }
         <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
         Chiama<small>0432 733922</small>
       </a>
-      <a class="action" href="mailto:info@ducaleimpianti.com">
-        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-        Scrivi<small>Info generali</small>
+      <a class="action" href="tel:+393285450039">
+        <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        Cellulare<small>328 545 0039</small>
       </a>
-      <a class="action" href="https://maps.google.com/?q=Via+dell%27Artigianato+69,+33043+Cividale+del+Friuli+UD" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        Indicazioni<small>Apri in mappe</small>
+      <a class="action" href="mailto:officinameccanica@elettricaducale.it">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        Scrivi<small>Officina</small>
       </a>
     </nav>
   </div>
@@ -260,14 +254,26 @@ body{ background:linear-gradient(180deg,#E7EFFA 0%,#F4F7FC 38%,#FDFDFE 100%); }
   <div class="col-body">
 
     <section class="rise" style="animation-delay:.16s">
-      <h2 class="label">Sede legale e operativa</h2>
+      <h2 class="label">Sedi</h2>
       <div class="card">
         <div class="venue">
+          <div class="k">Sede legale</div>
           <address>
             Via dell'Artigianato, 69
             <span>33043 Cividale del Friuli (UD) — Italia</span>
           </address>
           <a class="maplink" href="https://maps.google.com/?q=Via+dell%27Artigianato+69,+33043+Cividale+del+Friuli+UD" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Apri in mappe
+          </a>
+        </div>
+        <div class="venue venue--altra">
+          <div class="k">Sede operativa — officina</div>
+          <address>
+            Via dell'Artigianato, 95
+            <span>33043 Cividale del Friuli (UD) — Italia</span>
+          </address>
+          <a class="maplink" href="https://maps.google.com/?q=Via+dell%27Artigianato+95,+33043+Cividale+del+Friuli+UD" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
             Apri in mappe
           </a>
@@ -283,9 +289,9 @@ body{ background:linear-gradient(180deg,#E7EFFA 0%,#F4F7FC 38%,#FDFDFE 100%); }
         <div class="datum">
           <div class="body">
             <div class="k">P. IVA / Cod. Fiscale</div>
-            <div class="v">02718970300</div>
+            <div class="v">00481860302</div>
           </div>
-          <button class="copy" type="button" data-copy="02718970300" data-name="Partita IVA" aria-label="Copia partita IVA">
+          <button class="copy" type="button" data-copy="00481860302" data-name="Partita IVA" aria-label="Copia partita IVA">
             <svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           </button>
         </div>
@@ -307,9 +313,9 @@ body{ background:linear-gradient(180deg,#E7EFFA 0%,#F4F7FC 38%,#FDFDFE 100%); }
         <div class="datum">
           <div class="body">
             <div class="k">PEC</div>
-            <div class="v" style="font-size:13.5px">ducaleimpianti@pec.ducaleimpianti.com</div>
+            <div class="v" style="font-size:13.5px">elettricaducale@pec.elettricaducale.it</div>
           </div>
-          <button class="copy" type="button" data-copy="ducaleimpianti@pec.ducaleimpianti.com" data-name="Indirizzo PEC" aria-label="Copia indirizzo PEC">
+          <button class="copy" type="button" data-copy="elettricaducale@pec.elettricaducale.it" data-name="Indirizzo PEC" aria-label="Copia indirizzo PEC">
             <svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           </button>
         </div>
@@ -324,7 +330,7 @@ body{ background:linear-gradient(180deg,#E7EFFA 0%,#F4F7FC 38%,#FDFDFE 100%); }
     <section class="rise" style="animation-delay:.34s">
       <h2 class="label">Rete e sito</h2>
       <div class="links">
-        <a href="https://www.ducaleimpianti.com" target="_blank" rel="noopener">
+        <a href="https://www.elettricaducale.it" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20Z"/></svg>
           Sito internet
           <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -339,8 +345,8 @@ body{ background:linear-gradient(180deg,#E7EFFA 0%,#F4F7FC 38%,#FDFDFE 100%); }
 
     <footer class="rise" style="animation-delay:.4s">
       <div class="rule"></div>
-      Ducale Impianti S.r.l. — Società a socio unico<br>
-      P. IVA 02718970300 · Cividale del Friuli (UD)
+      Elettrica Ducale S.r.l. — Officina di carpenteria leggera<br>
+      P. IVA 00481860302 · Cividale del Friuli (UD)
     </footer>
 
   </div>
@@ -354,14 +360,13 @@ body{ background:linear-gradient(180deg,#E7EFFA 0%,#F4F7FC 38%,#FDFDFE 100%); }
 
   /* Uffici: unica fonte di verità */
   const DESKS = [
-    ["Informazioni generali", "info@ducaleimpianti.com"],
-    ["Amministrazione",       "amministrazione@ducaleimpianti.com"],
-    ["Commerciale",           "commerciale@ducaleimpianti.com"],
-    ["Acquisti",              "acquisti@ducaleimpianti.com"],
-    ["Fornitori",             "fornitori@ducaleimpianti.com"],
-    ["Gare e contratti",      "contratti@ducaleimpianti.com"],
-    ["Personale",             "personale@ducaleimpianti.com"],
-    ["Magazzino",             "magazzino@ducaleimpianti.com"]
+    ["Informazioni generali",   "info@elettricaducale.it"],
+    ["Officina e carpenteria",  "officinameccanica@elettricaducale.it"],
+    ["Amministrazione",         "amministrazione@elettricaducale.it"],
+    ["Fornitori",               "fornitori@elettricaducale.it"],
+    ["Magazzino",               "magazzino@elettricaducale.it"],
+    ["Gare e contratti",        "contratti@elettricaducale.it"],
+    ["Personale",               "personale@elettricaducale.it"]
   ];
 
   const COPY_ICON = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';

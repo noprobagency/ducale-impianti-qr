@@ -21,7 +21,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════════════════════════════════════════════════
@@ -64,7 +64,7 @@ body{
 .bg i{ position:absolute; border-radius:50%; filter:blur(70px); }
 .bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; background:color-mix(in srgb, var(--brand) 20%, transparent); }
 .bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; background:color-mix(in srgb, var(--brand) 13%, transparent); }
-.bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; background:color-mix(in srgb, var(--brand-2) 9%, transparent); }
+.bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; background:color-mix(in srgb, var(--brand-2) 11%, transparent); }
 
 .wrap{ position:relative; z-index:1; width:100%; max-width:520px; margin-inline:auto; padding:clamp(30px,7vw,50px) 20px 56px; }
 
@@ -73,7 +73,7 @@ body{
 /* Il marchio e' la lockup intera: il nome dell'azienda e' dentro l'immagine,
    quindi l'h1 non ripete il testo e porta il nome nell'alt. */
 h1.mark{
-  margin:0 auto 16px; padding:18px 20px;
+  margin:0 auto; padding:18px 20px;
   width:100%; max-width:300px;
   border-radius:20px;
   background:var(--glass-hi);
@@ -82,9 +82,6 @@ h1.mark{
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
 }
 h1.mark img{ display:block; width:100%; height:auto; }
-.legalese{ margin:0 0 10px; font-size:11px; font-weight:700; letter-spacing:.16em; color:var(--text-faint); text-transform:uppercase; }
-.tagline{ margin:0; color:var(--text-dim); font-size:14.5px; }
-.tagline strong{ color:var(--text); font-weight:700; }
 
 /* ═══ 4. Tre azioni in fila ═══ */
 .actions{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:28px 0 34px; }
@@ -146,7 +143,7 @@ h1.mark img{ display:block; width:100%; height:auto; }
 .datum{ display:flex; align-items:center; gap:12px; padding:13px 15px; }
 .datum + .datum{ border-top:1px solid var(--hairline-2); }
 .datum .k{ font:700 10.5px/1 "Lato",sans-serif; letter-spacing:.13em; text-transform:uppercase; color:var(--text-faint); margin-bottom:5px; }
-.datum .v{ font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:15.5px; letter-spacing:.02em; word-break:break-all; }
+.datum .v{ font-family:"Lato",sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em; word-break:break-all; }
 .datum .body{ flex:1; min-width:0; }
 .datum .note{ display:flex; gap:6px; align-items:flex-start; margin:7px 0 0; font-size:12.5px; line-height:1.4; color:var(--brand-warn); }
 .datum .note svg{ width:13px; height:13px; flex:none; margin-top:2px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; }
@@ -231,8 +228,6 @@ footer .rule{ height:1px; background:linear-gradient(to right,transparent,var(--
   <div class="col-id">
     <header class="identity rise" style="animation-delay:.04s">
       <h1 class="mark"><img src="img/logo-lockup.png" alt="Gruppo Elettrica Ducale S.r.l. — Automazione industriale" width="960" height="371"></h1>
-      <p class="legalese">S.r.l. · Socio unico</p>
-      <p class="tagline"><strong>Cividale del Friuli</strong> — riferimenti societari e contatti diretti degli uffici.</p>
     </header>
 
     <nav class="actions rise" style="animation-delay:.1s" aria-label="Azioni rapide">
@@ -348,15 +343,14 @@ footer .rule{ height:1px; background:linear-gradient(to right,transparent,var(--
 
   /* Uffici: unica fonte di verità */
   const DESKS = [
-    ["Informazioni generali", "info@elettricaducale.it"],
-    ["Amministrazione",       "amministrazione@elettricaducale.it"],
-    ["Commerciale",           "commerciale@elettricaducale.it"],
-    ["Acquisti",              "acquisti@elettricaducale.it"],
-    ["Fornitori",             "fornitori@elettricaducale.it"],
-    ["Gare e contratti",      "contratti@elettricaducale.it"],
-    ["Personale",             "personale@elettricaducale.it"],
-    ["Magazzino",             "magazzino@elettricaducale.it"],
-    ["Officina e carpenteria","officinameccanica@elettricaducale.it"]
+    ["Informazioni generali",   "info@elettricaducale.it"],
+    ["Amministrazione",         "amministrazione@elettricaducale.it"],
+    ["Commerciale",             "commerciale@elettricaducale.it"],
+    ["Acquisti",                "acquisti@elettricaducale.it"],
+    ["Fornitori",               "fornitori@elettricaducale.it"],
+    ["Gare e contratti",        "contratti@elettricaducale.it"],
+    ["Personale",               "personale@elettricaducale.it"],
+    ["Magazzino",               "magazzino@elettricaducale.it"]
   ];
 
   const COPY_ICON = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';

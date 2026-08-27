@@ -1,39 +1,53 @@
 # Landing QR — Gruppo Ducale
 
-Due pagine statiche gemelle, raggiunte dai rispettivi QR code stampati, una per
-azienda del gruppo. Nessuna dipendenza: niente framework, niente build, niente
-npm. Si aprono anche con un doppio clic sull'`index.html`.
+Tre pagine statiche sorelle, ognuna raggiunta dal proprio QR code stampato.
+Nessuna dipendenza: niente framework, niente build, niente npm. Si aprono anche
+con un doppio clic sull'`index.html`.
 
-| Cartella | Azienda | Destinazione |
+| Cartella | Chi | Destinazione |
 |---|---|---|
 | `card/` | Ducale Impianti S.r.l. | `https://www.ducaleimpianti.com/card/` |
 | `elettrica/` | Elettrica Ducale S.r.l. | `https://www.elettricaducale.it/card/` |
+| `officina/` | Officina di carpenteria leggera | `https://www.elettricaducale.it/officina/` |
 
-Le due aziende hanno siti distinti, quindi ogni pagina va sul dominio della
-propria azienda, in entrambi i casi nella cartella `card/`. In anteprima
-convivono sullo stesso indirizzo solo perche' e' un unico deploy.
+Ducale Impianti ed Elettrica Ducale hanno siti distinti, quindi ogni pagina va
+sul dominio della propria azienda. L'officina e' un reparto di Elettrica Ducale
+— stessa societa', stessa partita IVA — e sta quindi sul suo dominio, in una
+cartella a parte.
 
-**La pagina di Elettrica Ducale non si modifica a mano:** si genera da quella di
-Ducale Impianti, cosi' le due non divergono a ogni giro di correzioni.
+In anteprima le tre convivono sullo stesso indirizzo solo perche' e' un unico
+deploy Vercel. Non e' come saranno in produzione.
+
+## Le pagine derivate non si modificano a mano
+
+`card/index.html` e' l'unica sorgente. Le altre due si generano da quella, cosi'
+non divergono a ogni giro di correzioni:
 
 ```bash
-python3 _source/make-elettrica.py
+python3 _source/make-pagine.py              # elettrica + officina
+python3 _source/make-pagine.py officina     # una sola
 ```
 
-Lo script si ferma con un errore se un testo che deve sostituire non esiste
-piu': se hai cambiato la pagina di Ducale Impianti in un punto che lo riguarda,
-te ne accorgi subito invece di ritrovarti dati vecchi nella pagina gemella.
+Tutto cio' che distingue le tre pagine — dati, colori, uffici, sedi, recapiti —
+sta in `_source/make-pagine.py`. Lo script si ferma con un errore se un testo
+che deve sostituire non esiste piu': se hai cambiato `card/index.html` in un
+punto che lo riguarda te ne accorgi subito, invece di ritrovarti dati vecchi
+nelle pagine sorelle.
+
+**Quindi: si modifica `card/index.html`, poi si rigenera.** Una modifica fatta
+a mano dentro `elettrica/` o `officina/` viene persa alla prima rigenerazione.
 
 ## Cosa caricare
 
-Va online **solo il contenuto della cartella dell'azienda** (`card/` oppure
-`elettrica/`):
+Va online **solo il contenuto della cartella** (`card/`, `elettrica/` oppure
+`officina/`):
 
 ```
 card/
 ├── index.html
 └── img/
-    ├── logo.png
+    ├── logo-lockup.png     ← il marchio in testata
+    ├── logo.png            ← solo marchio, di scorta
     ├── favicon.ico
     ├── favicon-16.png
     ├── favicon-32.png
@@ -44,23 +58,15 @@ card/
 Ogni cartella ha il proprio `img/`, con logo e favicon della sua azienda.
 
 `_source/` resta in locale e non va mai caricata sull'hosting: contiene i loghi
-sorgente e gli script che generano immagini e pagina gemella.
+sorgente e gli script. Nemmeno `vercel.json` va caricato: serve solo
+all'anteprima.
 
-## Destinazione
+## Destinazione sull'hosting
 
-Copiare il contenuto di `card/` in `/public_html/card/`, sulla radice del sito
-WordPress di `ducaleimpianti.com`.
+Copiare il contenuto della cartella in `/public_html/<nome-cartella>/`, sulla
+radice del sito WordPress corrispondente.
 
-Indirizzo risultante:
-
-```
-https://www.ducaleimpianti.com/card/
-```
-
-Verificato il 14 agosto 2026: `https://www.ducaleimpianti.com/card/` risponde
-404, quindi lo slug `card` è libero e non collide con nessuna pagina esistente.
-
-### Perché funziona senza toccare WordPress
+### Perche' funziona senza toccare WordPress
 
 L'`.htaccess` standard di WordPress contiene:
 
@@ -69,32 +75,28 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 ```
 
-cioè WordPress non intercetta i file e le cartelle che esistono davvero su
+cioe' WordPress non intercetta i file e le cartelle che esistono davvero su
 disco. Una cartella statica dentro `public_html` viene quindi servita
 direttamente da Apache, senza passare dal CMS.
 
 ## Avvertenze
 
-1. **Non creare in WordPress una pagina con slug `card`.** Manderebbe in
-   conflitto le due cose e vincerebbe WordPress.
+1. **Non creare in WordPress pagine con slug `card` o `officina`.** Manderebbe
+   in conflitto le due cose e vincerebbe WordPress. Verificato il 14 agosto
+   2026: `https://www.ducaleimpianti.com/card/` rispondeva 404, quindi lo slug
+   era libero. Da riverificare su `elettricaducale.it` prima di caricare.
 2. **Plugin di sicurezza** (Wordfence, iThemes Security, Sucuri) a volte
    bloccano l'esecuzione in cartelle fuori standard. Se l'indirizzo risponde
-   403, la causa è quasi sempre lì.
+   403, la causa e' quasi sempre li'.
 3. **Cache e Cloudflare.** Una cartella statica non viene toccata dai plugin di
    cache, ma se dopo un aggiornamento vedi ancora la versione vecchia, svuota
    comunque la cache del plugin e quella di Cloudflare.
 4. **Permessi:** cartelle `755`, file `644`.
-5. **HTTPS e www.** L'indirizzo messo nel QR deve corrispondere esattamente alla
-   forma canonica del sito, per non aggiungere un redirect prima di mostrare la
-   pagina. Verificato: `ducaleimpianti.com`, `www.ducaleimpianti.com` e le
-   varianti in `http://` rispondono tutte `301` verso
-   `https://www.ducaleimpianti.com/`. La forma canonica è quindi **con `www` e
-   in `https`** — nel QR va `https://www.ducaleimpianti.com/card/`.
-6. **Aggiornamenti futuri.** Si modifica solo `card/index.html`, poi si rigenera
-   la pagina gemella. I dati degli uffici stanno nell'array `DESKS` in cima allo
-   script, in fondo al file; i colori nel blocco `:root`, all'inizio del CSS.
-   Quello che e' specifico di Elettrica Ducale — dati, colori, nono ufficio —
-   sta tutto in `_source/make-elettrica.py`.
+5. **HTTPS e www.** L'indirizzo nel QR deve corrispondere esattamente alla forma
+   canonica del sito, per non aggiungere un redirect prima di mostrare la
+   pagina. Verificato: su `ducaleimpianti.com` tutte le varianti rispondono
+   `301` verso `https://www.ducaleimpianti.com/`, quindi la forma canonica e'
+   **con `www` e in `https`**. Su `elettricaducale.it` vale lo stesso.
 
 ## Rigenerare logo e favicon
 
@@ -103,31 +105,33 @@ Serve Pillow (`pip install pillow`, oppure
 Dalla radice del progetto:
 
 ```bash
-python3 _source/make-favicons.py
+python3 _source/make-favicons.py            # tutte e tre
+python3 _source/make-favicons.py officina   # una sola
 ```
 
-Senza argomenti fa entrambe le aziende; `python3 _source/make-favicons.py
-elettrica` ne fa una sola.
-
-Parte dalle lockup in `_source/`, che sono JPEG su fondo bianco: lo sfondo viene
-scontornato ricavando l'alfa, poi si ritagliano tre pezzi diversi perche'
+Parte dalle lockup in `_source/`, che sono immagini su fondo bianco: lo sfondo
+viene scontornato ricavando l'alfa, poi si ritagliano tre pezzi diversi perche'
 servono a cose diverse.
 
-- `logo.png` — il solo marchio (GRUPPO + cerchio + *dal 1973*), per il riquadro
-  in cima alla pagina. Il taglio fra marchio e scritta viene trovato da solo,
-  cercando il corridoio bianco piu' largo.
-- `logo-lockup.png` — la lockup intera, se un giorno servisse a piena larghezza.
+- `logo-lockup.png` — la lockup intera, marchio piu' scritta: e' quella che sta
+  in testata. Oltre i 960 px viene ridotta, perche' in pagina occupa 300 px.
+- `logo.png` — il solo marchio (GRUPPO + cerchio + *dal 1973*). Il taglio fra
+  marchio e scritta viene trovato da solo, cercando il corridoio bianco piu'
+  largo. Oggi non e' usato in pagina, resta di scorta.
 - `favicon-*` — il solo cerchio. GRUPPO e *dal 1973* a 16 pixel diventano
   macchie illeggibili. Il cerchio si ricava per geometria: la riga piu' larga e'
   l'equatore, quella larghezza e' il diametro. Non si puo' cercare la banda
   "piu' larga di X", perche' in una circonferenza le righe si stringono proprio
   in cima e in fondo e la soglia mangerebbe le calotte.
 
-Due accorgimenti che sembrano dettagli e non lo sono:
+Tre accorgimenti che sembrano dettagli e non lo sono:
 
-- Sotto i 32 pixel l'alfa viene alzata con una gamma < 1. Il marchio di
-  Elettrica Ducale e' disegnato a filo, non pieno: senza quel ritocco alla
-  dimensione della linguetta del browser sbiancava fino a sparire.
+- Sotto i 32 pixel l'alfa viene alzata con una gamma < 1. I marchi di Elettrica
+  Ducale e dell'officina sono disegnati a filo, non pieni: senza quel ritocco,
+  alla dimensione della linguetta del browser sbiancavano fino a sparire.
+- Le immagini grandi passano a tavolozza di 64 colori. Sono marchi a tinte
+  piatte, ma il PNG a colore pieno li salva come fotografie: la lockup di
+  Elettrica Ducale scendeva da 313 a 39 KB senza differenze visibili.
 - L'`apple-touch-icon` ha fondo bianco, perche' iOS non gestisce la trasparenza
   nelle icone della schermata home.
 
@@ -143,39 +147,19 @@ https://www.ducaleimpianti.com/card/?utm_source=qr&utm_medium=print&utm_campaign
 ```
 
 La pagina li ignora: servono solo alla statistica lato server o ad Analytics, se
-in futuro verrà aggiunto.
+in futuro verra' aggiunto.
 
 Usare un **QR statico, non dinamico**: i generatori dinamici gratuiti scadono e
-trasformerebbero il materiale già stampato in carta straccia.
+trasformerebbero il materiale gia' stampato in carta straccia.
 
 ## Da completare
 
-- **Link LinkedIn.** Oggi è un segnaposto che al clic avvisa che manca. Quando
-  arriva l'indirizzo: sostituire l'`href` e togliere l'attributo
-  `data-placeholder`.
-- **Risoluzione dei loghi.** Le lockup arrivate sono JPEG: 740x268 px per Ducale
-  Impianti, 1401x542 per Elettrica Ducale. Il marchio ritagliato di Ducale
-  Impianti resta 179x268 px, appena sufficiente per il riquadro su schermi 2x e
-  tirato su schermi 3x. Se si recupera la versione vettoriale (SVG, EPS o PDF)
-  vale la pena rigenerare tutto da quella.
-
-## Bozze di sfondo (temporanee)
-
-`bozze/` contiene tre copie della pagina che differiscono solo per il fondo,
-usate per far scegliere la variante al cliente:
-
-| Cartella | Variante |
-|---|---|
-| `bozze/1-aloni/` | Aloni sfumati — è quella attualmente in `card/` |
-| `bozze/2-blu/`   | Velatura verticale nel blu del marchio |
-| `bozze/3-grana/` | Aloni con grana finissima |
-
-Si rigenerano da `card/index.html` con:
-
-```bash
-python3 _source/make-bozze-sfondi.py
-```
-
-Quando la variante è scelta, si riporta il suo blocco CSS dentro
-`card/index.html` e **si cancella la cartella `bozze/`**: non va mai caricata
-sull'hosting, come `_source/` e `vercel.json`.
+- **LinkedIn di Elettrica Ducale e dell'officina.** Su `card/` il link c'e' ed e'
+  quello ufficiale, preso dal sito di Ducale Impianti. Sulle altre due resta un
+  segnaposto che al clic avvisa che manca: il sito di Elettrica Ducale non
+  espone nessun profilo aziendale. Quando arriva l'indirizzo va messo in
+  `_source/make-pagine.py`, sostituendo la riga che rimette il segnaposto.
+- **Risoluzione dei loghi.** Le lockup arrivate sono immagini raster: 740x268 px
+  per Ducale Impianti, 1401x542 per Elettrica Ducale, 1204x468 per l'officina.
+  Se si recupera la versione vettoriale (SVG, EPS o PDF) vale la pena
+  rigenerare tutto da quella.
