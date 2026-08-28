@@ -410,14 +410,6 @@ footer .rule{ height:1px; background:linear-gradient(to right,transparent,var(--
     btn.innerHTML = DONE_ICON; btn.dataset.done = "1";
     setTimeout(() => { btn.innerHTML = COPY_ICON; btn.dataset.done = "0"; }, 1600);
   });
-
-  /* Segnaposto non ancora compilati */
-  document.querySelectorAll("[data-placeholder]").forEach(el => {
-    el.addEventListener("click", ev => {
-      ev.preventDefault();
-      say("Link LinkedIn ancora da inserire");
-    });
-  });
 })();
 </script>
 </body>
