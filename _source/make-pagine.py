@@ -18,6 +18,12 @@ SRC  = ROOT / "card" / "index.html"
 
 MAPPA = "https://maps.google.com/?q=Via+dell%27Artigianato+{n},+33043+Cividale+del+Friuli+UD"
 
+# Al civico 95 la ricerca per indirizzo aggancia l'azienda accanto (F.lli Bordon)
+# e il segnaposto cade sul capannone sbagliato. Con le coordinate il puntatore va
+# dove deve. Presi da OpenStreetMap, che ha il civico mappato, e ricontrollati in
+# senso inverso: 46.0827983,13.3911910 risponde "95, Via dell'Artigianato".
+MAPPA_95 = "https://www.google.com/maps/search/?api=1&query=46.0827983,13.3911910"
+
 ICONA_MAPPA = ('<svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>'
                '<circle cx="12" cy="10" r="3"/></svg>')
 ICONA_TEL = ('<svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 '
@@ -83,9 +89,8 @@ ELETTRICA = dict(
         ('ducaleimpianti@pec.ducaleimpianti.com', 'elettricaducale@pec.elettricaducale.it'),
         ('<a href="https://www.ducaleimpianti.com" target="_blank" rel="noopener">',
          '<a href="https://www.elettricaducale.it" target="_blank" rel="noopener">'),
-        # LinkedIn di Elettrica Ducale non ancora fornito: torna il segnaposto
         ('<a href="https://www.linkedin.com/company/ducale-impianti/" target="_blank" rel="noopener">',
-         '<a href="#" data-placeholder="linkedin" target="_blank" rel="noopener">'),
+         '<a href="https://it.linkedin.com/company/elettrica-ducale-s.r.l." target="_blank" rel="noopener">'),
         ("      Ducale Impianti S.r.l. — Società a socio unico<br>\n"
          "      P. IVA 02718970300 · Cividale del Friuli (UD)",
          "      Elettrica Ducale S.r.l. — Società a socio unico<br>\n"
@@ -131,7 +136,7 @@ SEDI_OFFICINA = f'''    <section class="rise" style="animation-delay:.16s">
             Via dell'Artigianato, 95
             <span>33043 Cividale del Friuli (UD) — Italia</span>
           </address>
-          <a class="maplink" href="{MAPPA.format(n=95)}" target="_blank" rel="noopener">
+          <a class="maplink" href="{MAPPA_95}" target="_blank" rel="noopener">
             {ICONA_MAPPA}
             Apri in mappe
           </a>
@@ -208,8 +213,15 @@ OFFICINA = dict(
         ('ducaleimpianti@pec.ducaleimpianti.com', 'elettricaducale@pec.elettricaducale.it'),
         ('<a href="https://www.ducaleimpianti.com" target="_blank" rel="noopener">',
          '<a href="https://www.elettricaducale.it" target="_blank" rel="noopener">'),
-        ('<a href="https://www.linkedin.com/company/ducale-impianti/" target="_blank" rel="noopener">',
-         '<a href="#" data-placeholder="linkedin" target="_blank" rel="noopener">'),
+        # l'officina un profilo LinkedIn non ce l'ha: si toglie la voce, non si
+        # lascia un segnaposto che al clic dice che manca
+        ('''        <a href="https://www.linkedin.com/company/ducale-impianti/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+''', ''),
+        ('<h2 class="label">Rete e sito</h2>', '<h2 class="label">Sito</h2>'),
         ("      Ducale Impianti S.r.l. — Società a socio unico<br>\n"
          "      P. IVA 02718970300 · Cividale del Friuli (UD)",
          "      Elettrica Ducale S.r.l. — Officina di carpenteria leggera<br>\n"

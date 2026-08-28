@@ -135,6 +135,18 @@ Tre accorgimenti che sembrano dettagli e non lo sono:
 - L'`apple-touch-icon` ha fondo bianco, perche' iOS non gestisce la trasparenza
   nelle icone della schermata home.
 
+## Il segnaposto della sede operativa
+
+Il link "Apri in mappe" della sede operativa dell'officina non usa l'indirizzo
+scritto, ma le coordinate `46.0827983,13.3911910`. Cercando "Via
+dell'Artigianato 95" Google agganciava l'azienda accanto e il segnaposto cadeva
+sul capannone sbagliato: l'ingresso giusto e' quello di fianco.
+
+Le coordinate vengono da OpenStreetMap, che ha il civico mappato, e sono state
+ricontrollate in senso inverso — quel punto risponde "95, Via dell'Artigianato".
+Gli altri link mappa restano a ricerca testuale sul civico 69, dove Google
+aggancia correttamente le aziende del gruppo.
+
 ## Tracciamento delle scansioni
 
 Per distinguere da quale supporto stampato arriva la scansione, si aggiungono i
@@ -154,11 +166,6 @@ trasformerebbero il materiale gia' stampato in carta straccia.
 
 ## Da completare
 
-- **LinkedIn di Elettrica Ducale e dell'officina.** Su `card/` il link c'e' ed e'
-  quello ufficiale, preso dal sito di Ducale Impianti. Sulle altre due resta un
-  segnaposto che al clic avvisa che manca: il sito di Elettrica Ducale non
-  espone nessun profilo aziendale. Quando arriva l'indirizzo va messo in
-  `_source/make-pagine.py`, sostituendo la riga che rimette il segnaposto.
 - **Risoluzione dei loghi.** Le lockup arrivate sono immagini raster: 740x268 px
   per Ducale Impianti, 1401x542 per Elettrica Ducale, 1204x468 per l'officina.
   Se si recupera la versione vettoriale (SVG, EPS o PDF) vale la pena
