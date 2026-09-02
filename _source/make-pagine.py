@@ -19,10 +19,12 @@ SRC  = ROOT / "card" / "index.html"
 MAPPA = "https://maps.google.com/?q=Via+dell%27Artigianato+{n},+33043+Cividale+del+Friuli+UD"
 
 # Al civico 95 la ricerca per indirizzo aggancia l'azienda accanto (F.lli Bordon)
-# e il segnaposto cade sul capannone sbagliato. Con le coordinate il puntatore va
-# dove deve. Presi da OpenStreetMap, che ha il civico mappato, e ricontrollati in
-# senso inverso: 46.0827983,13.3911910 risponde "95, Via dell'Artigianato".
-MAPPA_95 = "https://www.google.com/maps/search/?api=1&query=46.0827983,13.3911910"
+# e il segnaposto cade sul capannone sbagliato, quindi si va di coordinate.
+# Queste sono quelle indicate dal cliente sul posto: il civico mappato su
+# OpenStreetMap cadeva 59 m piu' a sud-est, ancora sull'ingresso sbagliato.
+# Scritte per esteso e non come link accorciato goo.gl, che dipende da un
+# servizio esterno che puo' smettere di risolvere.
+MAPPA_95 = "https://www.google.com/maps/search/?api=1&query=46.083296,13.390925"
 
 ICONA_MAPPA = ('<svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>'
                '<circle cx="12" cy="10" r="3"/></svg>')

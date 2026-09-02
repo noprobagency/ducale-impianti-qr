@@ -138,12 +138,18 @@ Tre accorgimenti che sembrano dettagli e non lo sono:
 ## Il segnaposto della sede operativa
 
 Il link "Apri in mappe" della sede operativa dell'officina non usa l'indirizzo
-scritto, ma le coordinate `46.0827983,13.3911910`. Cercando "Via
-dell'Artigianato 95" Google agganciava l'azienda accanto e il segnaposto cadeva
-sul capannone sbagliato: l'ingresso giusto e' quello di fianco.
+scritto, ma le coordinate `46.083296,13.390925`. Cercando "Via dell'Artigianato
+95" Google agganciava l'azienda accanto e il segnaposto cadeva sul capannone
+sbagliato: l'ingresso giusto e' quello di fianco.
 
-Le coordinate vengono da OpenStreetMap, che ha il civico mappato, e sono state
-ricontrollate in senso inverso — quel punto risponde "95, Via dell'Artigianato".
+Le coordinate sono state indicate dal cliente sul posto. Il civico mappato su
+OpenStreetMap cadeva 59 m piu' a sud-est, ancora sull'ingresso sbagliato: qui il
+dato catastale non basta, serviva la verifica di chi ci lavora.
+
+Sono scritte per esteso e non come link accorciato `maps.app.goo.gl`, che
+dipenderebbe da un servizio esterno capace di smettere di risolvere: un
+indirizzo raggiunto da materiale stampato deve reggere negli anni.
+
 Gli altri link mappa restano a ricerca testuale sul civico 69, dove Google
 aggancia correttamente le aziende del gruppo.
 
