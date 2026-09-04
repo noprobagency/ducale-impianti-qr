@@ -26,7 +26,7 @@
 <style>
 /* ═══════════════════════════════════════════════════════════
    1. TOKEN BRAND — unico blocco da cambiare per l'altro sito
-   Colori campionati dal logo: rosso #FF0000, blu #0070DC
+   Colori campionati dal logo: blu #0070DC, rosso #FF0000
    ═══════════════════════════════════════════════════════════ */
 :root{
   --brand:        #307048;   /* verde logo — riempimenti, morsetti */
@@ -62,8 +62,8 @@ body{
 /* Fondo: solo aloni morbidi di colore, nessuna trama */
 .bg{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
 .bg i{ position:absolute; border-radius:50%; filter:blur(70px); }
-.bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; background:color-mix(in srgb, var(--brand) 26%, transparent); }
-.bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; background:color-mix(in srgb, var(--brand-2) 26%, transparent); }
+.bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; background:color-mix(in srgb, var(--brand-2) 26%, transparent); }
+.bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; background:color-mix(in srgb, var(--brand) 26%, transparent); }
 .bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; background:color-mix(in srgb, var(--brand) 12%, transparent); }
 
 .wrap{ position:relative; z-index:1; width:100%; max-width:520px; margin-inline:auto; padding:clamp(30px,7vw,50px) 20px 56px; }
@@ -356,7 +356,7 @@ footer .rule{ height:1px; background:linear-gradient(to right,transparent,var(--
   /* Uffici: unica fonte di verità */
   const DESKS = [
     ["Informazioni generali",   "info@elettricaducale.it"],
-    ["Officina e carpenteria",  "officinameccanica@elettricaducale.it"],
+    ["Officina di Carpenteria", "officinameccanica@elettricaducale.it"],
     ["Amministrazione",         "amministrazione@elettricaducale.it"],
     ["Fornitori",               "fornitori@elettricaducale.it"],
     ["Magazzino",               "magazzino@elettricaducale.it"],

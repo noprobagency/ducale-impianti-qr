@@ -16,6 +16,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC  = ROOT / "card" / "index.html"
 
+BLOB_CARD = """.bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; background:color-mix(in srgb, var(--brand-2) 20%, transparent); }
+.bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; background:color-mix(in srgb, var(--brand) 20%, transparent); }
+.bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; background:color-mix(in srgb, var(--brand) 11%, transparent); }"""
+
 MAPPA = "https://maps.google.com/?q=Via+dell%27Artigianato+{n},+33043+Cividale+del+Friuli+UD"
 
 # Al civico 95 la ricerca per indirizzo aggancia l'azienda accanto (F.lli Bordon)
@@ -64,26 +68,30 @@ ELETTRICA = dict(
         ('<meta property="og:title" content="Ducale Impianti S.r.l. — Contatti ufficiali">',
          '<meta property="og:title" content="Elettrica Ducale S.r.l. — Contatti ufficiali">'),
 
-        ("  --brand:        #FF0000;   /* rosso logo — riempimenti, morsetti */\n"
-         "  --brand-ink:    #D6000A;   /* rosso scurito — testi e link su chiaro */\n"
-         "  --brand-2:      #0070DC;   /* blu logo — accento secondario */",
+        ("  --brand:        #0070DC;   /* blu logo — pulsanti, morsetti, bordi */\n"
+         "  --brand-ink:    #0060BE;   /* blu scurito — testi e icone su chiaro (6.2:1 su bianco) */\n"
+         "  --brand-2:      #FF0000;   /* rosso logo — solo l'alone di fondo a sinistra */",
          "  --brand:        #E4402F;   /* rosso logo — riempimenti, morsetti */\n"
          "  --brand-ink:    #D6342A;   /* rosso scurito — testi e link su chiaro (4.8:1 su bianco) */\n"
          "  --brand-2:      #6E6E6E;   /* grigio logo — accento secondario */"),
-        ("  background:linear-gradient(160deg,#FF2020,#DD000C);\n"
-         "  border-color:#C8000A; color:#fff;\n"
-         "  box-shadow:0 10px 26px rgba(214,0,10,.28), inset 0 1px 0 rgba(255,255,255,.34);",
+        ("  background:linear-gradient(160deg,#1272D6,#00539F);\n"
+         "  border-color:#004E96; color:#fff;\n"
+         "  box-shadow:0 10px 26px rgba(0,83,159,.28), inset 0 1px 0 rgba(255,255,255,.34);",
          "  background:linear-gradient(160deg,#EE5140,#D6342A);\n"
          "  border-color:#C02A21; color:#fff;\n"
          "  box-shadow:0 10px 26px rgba(214,52,42,.28), inset 0 1px 0 rgba(255,255,255,.34);"),
-        ("  .action--primary:hover{ border-color:#A80008; box-shadow:0 16px 34px rgba(214,0,10,.34), "
+        ("  .action--primary:hover{ border-color:#003F7A; box-shadow:0 16px 34px rgba(0,83,159,.34), "
          "inset 0 1px 0 rgba(255,255,255,.34); }",
          "  .action--primary:hover{ border-color:#A4231B; box-shadow:0 16px 34px rgba(214,52,42,.34), "
          "inset 0 1px 0 rgba(255,255,255,.34); }"),
-        (".bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; "
-         "background:color-mix(in srgb, var(--brand-2) 20%, transparent); }",
+        # aloni: rosso a sinistra e a destra, grigio in fondo
+        (BLOB_CARD,
+         ".bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; "
+         "background:color-mix(in srgb, var(--brand) 20%, transparent); }\n"
          ".bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; "
-         "background:color-mix(in srgb, var(--brand) 13%, transparent); }"),
+         "background:color-mix(in srgb, var(--brand) 13%, transparent); }\n"
+         ".bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; "
+         "background:color-mix(in srgb, var(--brand-2) 9%, transparent); }"),
 
         ('href="mailto:info@ducaleimpianti.com"', 'href="mailto:info@elettricaducale.it"'),
         ('<div class="v">02718970300</div>', '<div class="v">00481860302</div>'),
@@ -159,7 +167,7 @@ OFFICINA = dict(
             'Officina di carpenteria leggera" width="960" height="374">'),
     uffici=[
         ("Informazioni generali",  "info@elettricaducale.it"),
-        ("Officina e carpenteria", "officinameccanica@elettricaducale.it"),
+        ("Officina di Carpenteria", "officinameccanica@elettricaducale.it"),
         ("Amministrazione",        "amministrazione@elettricaducale.it"),
         ("Fornitori",              "fornitori@elettricaducale.it"),
         ("Magazzino",              "magazzino@elettricaducale.it"),
@@ -180,33 +188,29 @@ OFFICINA = dict(
          '<meta name="theme-color" content="#F5F8F6">'),
 
         # verde del marchio; l'inchiostro e' scurito per stare sopra il 4.5:1
-        ("  --brand:        #FF0000;   /* rosso logo — riempimenti, morsetti */\n"
-         "  --brand-ink:    #D6000A;   /* rosso scurito — testi e link su chiaro */\n"
-         "  --brand-2:      #0070DC;   /* blu logo — accento secondario */",
+        ("  --brand:        #0070DC;   /* blu logo — pulsanti, morsetti, bordi */\n"
+         "  --brand-ink:    #0060BE;   /* blu scurito — testi e icone su chiaro (6.2:1 su bianco) */\n"
+         "  --brand-2:      #FF0000;   /* rosso logo — solo l'alone di fondo a sinistra */",
          "  --brand:        #307048;   /* verde logo — riempimenti, morsetti */\n"
          "  --brand-ink:    #2A6440;   /* verde scurito — testi e link su chiaro (6.5:1 su bianco) */\n"
          "  --brand-2:      #6E8F7A;   /* verde grigio — accento secondario */"),
         ("  --page:      #F6F7FA;", "  --page:      #F5F8F6;"),
-        ("  background:linear-gradient(160deg,#FF2020,#DD000C);\n"
-         "  border-color:#C8000A; color:#fff;\n"
-         "  box-shadow:0 10px 26px rgba(214,0,10,.28), inset 0 1px 0 rgba(255,255,255,.34);",
+        ("  background:linear-gradient(160deg,#1272D6,#00539F);\n"
+         "  border-color:#004E96; color:#fff;\n"
+         "  box-shadow:0 10px 26px rgba(0,83,159,.28), inset 0 1px 0 rgba(255,255,255,.34);",
          "  background:linear-gradient(160deg,#3E8A5A,#2A6440);\n"
          "  border-color:#245537; color:#fff;\n"
          "  box-shadow:0 10px 26px rgba(42,100,64,.28), inset 0 1px 0 rgba(255,255,255,.34);"),
-        ("  .action--primary:hover{ border-color:#A80008; box-shadow:0 16px 34px rgba(214,0,10,.34), "
+        ("  .action--primary:hover{ border-color:#003F7A; box-shadow:0 16px 34px rgba(0,83,159,.34), "
          "inset 0 1px 0 rgba(255,255,255,.34); }",
          "  .action--primary:hover{ border-color:#1D452C; box-shadow:0 16px 34px rgba(42,100,64,.34), "
          "inset 0 1px 0 rgba(255,255,255,.34); }"),
-        (".bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; "
-         "background:color-mix(in srgb, var(--brand) 20%, transparent); }",
+        # aloni tutti nel verde, un po' piu' carichi
+        (BLOB_CARD,
          ".bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; "
-         "background:color-mix(in srgb, var(--brand) 26%, transparent); }"),
-        (".bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; "
-         "background:color-mix(in srgb, var(--brand-2) 20%, transparent); }",
+         "background:color-mix(in srgb, var(--brand-2) 26%, transparent); }\n"
          ".bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; "
-         "background:color-mix(in srgb, var(--brand-2) 26%, transparent); }"),
-        (".bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; "
-         "background:color-mix(in srgb, var(--brand-2) 11%, transparent); }",
+         "background:color-mix(in srgb, var(--brand) 26%, transparent); }\n"
          ".bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; "
          "background:color-mix(in srgb, var(--brand) 12%, transparent); }"),
 

@@ -26,12 +26,12 @@
 <style>
 /* ═══════════════════════════════════════════════════════════
    1. TOKEN BRAND — unico blocco da cambiare per l'altro sito
-   Colori campionati dal logo: rosso #FF0000, blu #0070DC
+   Colori campionati dal logo: blu #0070DC, rosso #FF0000
    ═══════════════════════════════════════════════════════════ */
 :root{
-  --brand:        #FF0000;   /* rosso logo — riempimenti, morsetti */
-  --brand-ink:    #D6000A;   /* rosso scurito — testi e link su chiaro */
-  --brand-2:      #0070DC;   /* blu logo — accento secondario */
+  --brand:        #0070DC;   /* blu logo — pulsanti, morsetti, bordi */
+  --brand-ink:    #0060BE;   /* blu scurito — testi e icone su chiaro (6.2:1 su bianco) */
+  --brand-2:      #FF0000;   /* rosso logo — solo l'alone di fondo a sinistra */
   --brand-warn:   #8A4B00;   /* ambra scura — nota sul codice SDI */
   --brand-warn-bg:#FFE7B0;
 
@@ -62,9 +62,9 @@ body{
 /* Fondo: solo aloni morbidi di colore, nessuna trama */
 .bg{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
 .bg i{ position:absolute; border-radius:50%; filter:blur(70px); }
-.bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; background:color-mix(in srgb, var(--brand) 20%, transparent); }
-.bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; background:color-mix(in srgb, var(--brand-2) 20%, transparent); }
-.bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; background:color-mix(in srgb, var(--brand-2) 11%, transparent); }
+.bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; background:color-mix(in srgb, var(--brand-2) 20%, transparent); }
+.bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; background:color-mix(in srgb, var(--brand) 20%, transparent); }
+.bg i:nth-child(3){ width:min(560px,95vw); aspect-ratio:1; bottom:-260px; left:35%; background:color-mix(in srgb, var(--brand) 11%, transparent); }
 
 .wrap{ position:relative; z-index:1; width:100%; max-width:520px; margin-inline:auto; padding:clamp(30px,7vw,50px) 20px 56px; }
 
@@ -98,9 +98,9 @@ h1.mark img{ display:block; width:100%; height:auto; }
 .action svg{ width:22px; height:22px; stroke:var(--brand-ink); fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
 .action small{ display:block; color:var(--text-faint); font-size:11.5px; font-weight:400; margin-top:3px; letter-spacing:.01em; }
 .action--primary{
-  background:linear-gradient(160deg,#FF2020,#DD000C);
-  border-color:#C8000A; color:#fff;
-  box-shadow:0 10px 26px rgba(214,0,10,.28), inset 0 1px 0 rgba(255,255,255,.34);
+  background:linear-gradient(160deg,#1272D6,#00539F);
+  border-color:#004E96; color:#fff;
+  box-shadow:0 10px 26px rgba(0,83,159,.28), inset 0 1px 0 rgba(255,255,255,.34);
 }
 .action--primary svg{ stroke:#fff; }
 .action--primary small{ color:rgba(255,255,255,.92); }
@@ -182,7 +182,7 @@ h1.mark img{ display:block; width:100%; height:auto; }
 /* Stati */
 @media (hover:hover){
   .action:hover,.links a:hover{ transform:translateY(-2px); border-color:color-mix(in srgb, var(--brand) 34%, transparent); box-shadow:0 18px 44px rgba(19,32,60,.13), inset 0 1px 0 #fff; }
-  .action--primary:hover{ border-color:#A80008; box-shadow:0 16px 34px rgba(214,0,10,.34), inset 0 1px 0 rgba(255,255,255,.34); }
+  .action--primary:hover{ border-color:#003F7A; box-shadow:0 16px 34px rgba(0,83,159,.34), inset 0 1px 0 rgba(255,255,255,.34); }
   .desk:hover{ background:rgba(255,255,255,.7); }
   .copy:hover{ background:#fff; color:var(--text); border-color:color-mix(in srgb, var(--brand) 32%, transparent); }
 }
