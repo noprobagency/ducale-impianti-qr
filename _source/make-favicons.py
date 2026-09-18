@@ -22,9 +22,9 @@ ROOT = Path(__file__).resolve().parent.parent
 # chiave per la riga di comando -> (cartella, che e' anche lo slug in produzione,
 #                                   logo sorgente, nome leggibile)
 AZIENDE = {
-    "ducale":    ("ducale-qr",    "Logo-Gruppo-Ducale-Impianti.jpg",      "Ducale Impianti"),
-    "elettrica": ("elettrica-qr", "Logo-Gruppo-Elettrica-Ducale.jpg",     "Elettrica Ducale"),
-    "officina":  ("officina-qr",  "Logo-Gruppo-Officina-Carpenteria.png", "Officina di carpenteria"),
+    "ducale":    ("impiantielettrici-qr",   "Logo-Gruppo-Ducale-Impianti.jpg",      "Ducale Impianti"),
+    "elettrica": ("quadri-qr",              "Logo-Gruppo-Elettrica-Ducale.jpg",     "Elettrica Ducale"),
+    "officina":  ("officinacarpenteria-qr", "Logo-Gruppo-Officina-Carpenteria.png", "Officina di carpenteria"),
 }
 
 SOGLIA = 235   # sopra questo livello il pixel e' considerato sfondo

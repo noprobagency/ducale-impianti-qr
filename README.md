@@ -6,12 +6,12 @@ con un doppio clic sull'`index.html`.
 
 | Cartella | Chi | Indirizzo nel QR |
 |---|---|---|
-| `ducale-qr/` | Ducale Impianti S.r.l. | `https://www.ducaleimpianti.com/ducale-qr/` |
-| `elettrica-qr/` | Elettrica Ducale S.r.l. | `https://www.elettricaducale.it/elettrica-qr/` |
-| `officina-qr/` | Officina di carpenteria leggera | `https://www.elettricaducale.it/officina-qr/` |
+| `impiantielettrici-qr/` | Ducale Impianti S.r.l. | `https://www.ducaleimpianti.com/impiantielettrici-qr/` |
+| `quadri-qr/` | Elettrica Ducale S.r.l. | `https://www.elettricaducale.it/quadri-qr/` |
+| `officinacarpenteria-qr/` | Officina di carpenteria leggera | `https://www.elettricaducale.it/officinacarpenteria-qr/` |
 
-**Il nome della cartella e' lo slug in produzione.** Si carica `ducale-qr/` e
-l'indirizzo diventa `.../ducale-qr/`: nessuna traduzione fra i due, nessuna
+**Il nome della cartella e' lo slug in produzione.** Si carica `impiantielettrici-qr/` e
+l'indirizzo diventa `.../impiantielettrici-qr/`: nessuna traduzione fra i due, nessuna
 occasione di sbagliare in fase di caricamento.
 
 Ducale Impianti ed Elettrica Ducale hanno siti distinti, quindi ogni pagina va
@@ -33,15 +33,15 @@ file come indirizzo. La cartella avrebbe avuto la precedenza, ma se un giorno
 fosse stata rimossa i QR stampati avrebbero mostrato una foto invece di un
 errore.
 
-Gli slug piu' lunghi non costano niente in stampa. Con correzione d'errore Q
-tutti e tre gli indirizzi restano alla versione 4 del QR, 33x33 moduli, identici
-a quelli che si sarebbero avuti con `/card/`.
+Gli slug sono stati scelti dal cliente. I due piu' lunghi portano il QR a
+49x49 moduli invece di 45x45: per questo il lato minimo in stampa e' 22 mm e
+non 20, cosi' ogni modulo resta sopra 0,45 mm.
 
 Verificato il 18 settembre 2026: tutti e tre rispondono 404, quindi sono liberi.
 
 ## Le pagine derivate non si modificano a mano
 
-`ducale-qr/index.html` e' l'unica sorgente. Le altre due si generano da quella, cosi'
+`impiantielettrici-qr/index.html` e' l'unica sorgente. Le altre due si generano da quella, cosi'
 non divergono a ogni giro di correzioni:
 
 ```bash
@@ -51,21 +51,21 @@ python3 _source/make-pagine.py officina     # una sola
 
 Tutto cio' che distingue le tre pagine — dati, colori, uffici, sedi, recapiti —
 sta in `_source/make-pagine.py`. Lo script si ferma con un errore se un testo
-che deve sostituire non esiste piu': se hai cambiato `ducale-qr/index.html` in un
+che deve sostituire non esiste piu': se hai cambiato `impiantielettrici-qr/index.html` in un
 punto che lo riguarda te ne accorgi subito, invece di ritrovarti dati vecchi
 nelle pagine sorelle.
 
-**Quindi: si modifica `ducale-qr/index.html`, poi si rigenera.** Una modifica
-fatta a mano dentro `elettrica-qr/` o `officina-qr/` viene persa alla prima
+**Quindi: si modifica `impiantielettrici-qr/index.html`, poi si rigenera.** Una modifica
+fatta a mano dentro `quadri-qr/` o `officinacarpenteria-qr/` viene persa alla prima
 rigenerazione.
 
 ## Cosa caricare
 
-Va online **la cartella intera**, con il suo nome: `ducale-qr/`,
-`elettrica-qr/` oppure `officina-qr/`.
+Va online **la cartella intera**, con il suo nome: `impiantielettrici-qr/`,
+`quadri-qr/` oppure `officinacarpenteria-qr/`.
 
 ```
-ducale-qr/
+impiantielettrici-qr/
 ├── index.html
 └── img/
     ├── logo-lockup.png     ← il marchio in testata
@@ -82,16 +82,19 @@ Ogni cartella ha il proprio `img/`, con logo e favicon della sua azienda.
 `_source/` resta in locale e non va mai caricata sull'hosting: contiene i loghi
 sorgente e gli script. Nemmeno `vercel.json` va caricato: serve solo all'anteprima, dove tiene
 anche i reindirizzamenti dai vecchi indirizzi (`/card/`, `/elettrica/`,
-`/officina/`) a quelli nuovi, per i link gia' mandati al cliente.
+`/officina/`, e poi `/ducale-qr/`, `/elettrica-qr/`, `/officina-qr/`) a quelli
+definitivi, per i link gia' mandati al cliente. Reindirizza anche i vecchi file
+QR ai nuovi: chi apre un link di una lista precedente riceve il codice giusto,
+non uno che punta a un indirizzo che in produzione non esistera' mai.
 
 ## Destinazione sull'hosting
 
 Copiare la cartella dentro `/public_html/`, sulla radice del sito WordPress
-corrispondente, in modo che risulti `/public_html/ducale-qr/index.html` e cosi'
+corrispondente, in modo che risulti `/public_html/impiantielettrici-qr/index.html` e cosi'
 via:
 
-- `ducale-qr/` sull'hosting di `ducaleimpianti.com`
-- `elettrica-qr/` e `officina-qr/` sull'hosting di `elettricaducale.it`
+- `impiantielettrici-qr/` sull'hosting di `ducaleimpianti.com`
+- `quadri-qr/` e `officinacarpenteria-qr/` sull'hosting di `elettricaducale.it`
 
 ### Perche' funziona senza toccare WordPress
 
@@ -109,7 +112,7 @@ direttamente da Apache, senza passare dal CMS.
 ## Avvertenze
 
 1. **Non creare in WordPress pagine, articoli o immagini con slug
-   `ducale-qr`, `elettrica-qr` o `officina-qr`.** Vale anche per le immagini:
+   `impiantielettrici-qr`, `quadri-qr` o `officinacarpenteria-qr`.** Vale anche per le immagini:
    WordPress da' a ogni file caricato un indirizzo col suo nome, ed e' cosi' che
    `/officina/` risultava gia' occupato.
 2. **Plugin di sicurezza** (Wordfence, iThemes Security, Sucuri) a volte
@@ -196,9 +199,9 @@ alta risoluzione per chi lo chiede.
 
 | File | Indirizzo codificato |
 |---|---|
-| `qr/ducale-qr.*` | `https://www.ducaleimpianti.com/ducale-qr/?utm_source=biglietto&utm_medium=qr` |
-| `qr/elettrica-qr.*` | `https://www.elettricaducale.it/elettrica-qr/?utm_source=biglietto&utm_medium=qr` |
-| `qr/officina-qr.*` | `https://www.elettricaducale.it/officina-qr/?utm_source=biglietto&utm_medium=qr` |
+| `qr/impiantielettrici-qr.*` | `https://www.ducaleimpianti.com/impiantielettrici-qr/?utm_source=biglietto&utm_medium=qr` |
+| `qr/quadri-qr.*` | `https://www.elettricaducale.it/quadri-qr/?utm_source=biglietto&utm_medium=qr` |
+| `qr/officinacarpenteria-qr.*` | `https://www.elettricaducale.it/officinacarpenteria-qr/?utm_source=biglietto&utm_medium=qr` |
 
 Scelte, tutte deliberate perche' un QR stampato non si corregge piu':
 
@@ -206,10 +209,12 @@ Scelte, tutte deliberate perche' un QR stampato non si corregge piu':
   generatori online creano quasi sempre QR *dinamici*, che passano da un loro
   link di rimbalzo: quando l'abbonamento scade o il servizio chiude, tutto il
   materiale stampato smette di funzionare.
-- **Correzione d'errore M, 45x45 moduli.** Il biglietto e' carta piatta e
-  pulita; con Q il codice salirebbe a 53x53, piu' fitto a parita' di misura.
-- **Lato minimo in stampa: 20 mm**, margine bianco compreso: sono 0,44 mm per
-  modulo, comodi per qualsiasi telefono. Il margine bianco attorno fa parte del
+- **Correzione d'errore M.** Il biglietto e' carta piatta e pulita. Il codice
+  viene 49x49 moduli per Ducale Impianti e per l'officina, 45x45 per Elettrica
+  Ducale, che ha l'indirizzo piu' corto; con Q salirebbe fino a 57x57, piu'
+  fitto a parita' di misura.
+- **Lato minimo in stampa: 22 mm**, margine bianco compreso: sono 0,45 mm per
+  modulo nel caso piu' fitto, comodi per qualsiasi telefono. Il margine bianco attorno fa parte del
   codice e non va tagliato: senza, molti telefoni non lo agganciano.
 - **Nero pieno su bianco.** Niente colori ne' logo al centro.
 - **Verifica automatica.** Lo script rilegge ogni PNG con due lettori

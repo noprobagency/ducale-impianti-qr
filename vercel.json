@@ -1,11 +1,125 @@
 {
   "trailingSlash": true,
   "redirects": [
-    { "source": "/card/",            "destination": "/ducale-qr/",          "permanent": false },
-    { "source": "/elettrica/",       "destination": "/elettrica-qr/",       "permanent": false },
-    { "source": "/officina/",        "destination": "/officina-qr/",        "permanent": false },
-    { "source": "/card/:path*",      "destination": "/ducale-qr/:path*",    "permanent": false },
-    { "source": "/elettrica/:path*", "destination": "/elettrica-qr/:path*", "permanent": false },
-    { "source": "/officina/:path*",  "destination": "/officina-qr/:path*",  "permanent": false }
+    {
+      "source": "/card/",
+      "destination": "/impiantielettrici-qr/",
+      "permanent": false
+    },
+    {
+      "source": "/ducale-qr/",
+      "destination": "/impiantielettrici-qr/",
+      "permanent": false
+    },
+    {
+      "source": "/elettrica/",
+      "destination": "/quadri-qr/",
+      "permanent": false
+    },
+    {
+      "source": "/elettrica-qr/",
+      "destination": "/quadri-qr/",
+      "permanent": false
+    },
+    {
+      "source": "/officina/",
+      "destination": "/officinacarpenteria-qr/",
+      "permanent": false
+    },
+    {
+      "source": "/officina-qr/",
+      "destination": "/officinacarpenteria-qr/",
+      "permanent": false
+    },
+    {
+      "source": "/card/:path*",
+      "destination": "/impiantielettrici-qr/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/ducale-qr/:path*",
+      "destination": "/impiantielettrici-qr/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/elettrica/:path*",
+      "destination": "/quadri-qr/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/elettrica-qr/:path*",
+      "destination": "/quadri-qr/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/officina/:path*",
+      "destination": "/officinacarpenteria-qr/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/officina-qr/:path*",
+      "destination": "/officinacarpenteria-qr/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/qr/ducale-qr.pdf",
+      "destination": "/qr/impiantielettrici-qr.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/qr/ducale-qr.svg",
+      "destination": "/qr/impiantielettrici-qr.svg",
+      "permanent": false
+    },
+    {
+      "source": "/qr/ducale-qr.eps",
+      "destination": "/qr/impiantielettrici-qr.eps",
+      "permanent": false
+    },
+    {
+      "source": "/qr/ducale-qr.png",
+      "destination": "/qr/impiantielettrici-qr.png",
+      "permanent": false
+    },
+    {
+      "source": "/qr/elettrica-qr.pdf",
+      "destination": "/qr/quadri-qr.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/qr/elettrica-qr.svg",
+      "destination": "/qr/quadri-qr.svg",
+      "permanent": false
+    },
+    {
+      "source": "/qr/elettrica-qr.eps",
+      "destination": "/qr/quadri-qr.eps",
+      "permanent": false
+    },
+    {
+      "source": "/qr/elettrica-qr.png",
+      "destination": "/qr/quadri-qr.png",
+      "permanent": false
+    },
+    {
+      "source": "/qr/officina-qr.pdf",
+      "destination": "/qr/officinacarpenteria-qr.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/qr/officina-qr.svg",
+      "destination": "/qr/officinacarpenteria-qr.svg",
+      "permanent": false
+    },
+    {
+      "source": "/qr/officina-qr.eps",
+      "destination": "/qr/officinacarpenteria-qr.eps",
+      "permanent": false
+    },
+    {
+      "source": "/qr/officina-qr.png",
+      "destination": "/qr/officinacarpenteria-qr.png",
+      "permanent": false
+    }
   ]
 }

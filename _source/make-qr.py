@@ -15,9 +15,9 @@ Scelte, tutte deliberate perche' un QR stampato non si corregge piu':
   arriva alla pagina senza reindirizzamenti intermedi.
 - UTM minimo (sorgente e mezzo): distingue il biglietto da visita da futuri
   supporti. Va messo adesso perche' dopo la stampa non si aggiunge piu'.
-- Correzione d'errore M: il biglietto e' carta piatta e pulita, e con M il
-  codice resta a 45x45 moduli. Con Q salirebbe a 53x53, piu' fitto a parita'
-  di dimensione. Per furgoni o cartelli di cantiere servirebbe Q, con un
+- Correzione d'errore M: il biglietto e' carta piatta e pulita. Con M il
+  codice e' 45x45 o 49x49 moduli a seconda della lunghezza dell'indirizzo; con
+  Q salirebbe fino a 57x57, piu' fitto a parita' di dimensione. Per furgoni o cartelli di cantiere servirebbe Q, con un
   indirizzo diverso (utm_source=furgone).
 - Nero pieno su bianco, margine bianco di 4 moduli come da specifica: senza
   quella cornice molti telefoni non agganciano il codice.
@@ -31,12 +31,12 @@ OUT = ROOT / "qr"
 UTM = "?utm_source=biglietto&utm_medium=qr"
 
 QR = {
-    "ducale-qr":    "https://www.ducaleimpianti.com/ducale-qr/",
-    "elettrica-qr": "https://www.elettricaducale.it/elettrica-qr/",
-    "officina-qr":  "https://www.elettricaducale.it/officina-qr/",
+    "impiantielettrici-qr":   "https://www.ducaleimpianti.com/impiantielettrici-qr/",
+    "quadri-qr":              "https://www.elettricaducale.it/quadri-qr/",
+    "officinacarpenteria-qr": "https://www.elettricaducale.it/officinacarpenteria-qr/",
 }
 
-LATO_MINIMO_MM = 20      # sotto, i moduli scendono verso il limite di lettura
+LATO_MINIMO_MM = 22      # con gli slug lunghi il codice e' 49x49: a 22 mm restano 0,45 mm per modulo
 BORDO = 4                # margine bianco in moduli: il minimo della specifica
 
 
@@ -98,9 +98,9 @@ for nome, base in QR.items():
         esito = f"{giuste}/{totali} letture esatte" if ok else \
                 f"ERRORE: {giuste}/{totali} esatte, lette anche {sorted(sbagliate)}"
 
-    print(f"{nome:13s} v{qr.version} {lato}x{lato} moduli, "
+    print(f"{nome:23s} v{qr.version} {lato}x{lato} moduli, "
           f"{LATO_MINIMO_MM / lato:.2f} mm/modulo a {LATO_MINIMO_MM} mm  —  rilettura: {esito}")
-    print(f"              {url}")
+    print(f"{'':23s} {url}")
 
 if not tutto_ok:
     raise SystemExit("\nAlmeno un QR non si rilegge come dovrebbe: NON mandarli in stampa.")
