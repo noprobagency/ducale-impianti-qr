@@ -182,22 +182,54 @@ indirizzo raggiunto da materiale stampato deve reggere negli anni.
 Gli altri link mappa restano a ricerca testuale sul civico 69, dove Google
 aggancia correttamente le aziende del gruppo.
 
-## Tracciamento delle scansioni
+## QR code
 
-Per distinguere da quale supporto stampato arriva la scansione, si aggiungono i
-parametri direttamente nell'indirizzo del QR, uno diverso per ogni supporto:
+Si generano qui, senza servizi esterni:
 
-```
-https://www.ducaleimpianti.com/ducale-qr/?utm_source=qr&utm_medium=print&utm_campaign=biglietti
-https://www.ducaleimpianti.com/ducale-qr/?utm_source=qr&utm_medium=print&utm_campaign=mezzi
-https://www.ducaleimpianti.com/ducale-qr/?utm_source=qr&utm_medium=print&utm_campaign=cantieri
+```bash
+python3 _source/make-qr.py      # serve: pip install segno (verifica: opencv-python-headless)
 ```
 
-La pagina li ignora: servono solo alla statistica lato server o ad Analytics, se
-in futuro verra' aggiunto.
+I file finiscono in `qr/`, **cartella per la tipografia: non va caricata
+sull'hosting.** Per ogni azienda: SVG, PDF ed EPS vettoriali, piu' un PNG ad
+alta risoluzione per chi lo chiede.
 
-Usare un **QR statico, non dinamico**: i generatori dinamici gratuiti scadono e
-trasformerebbero il materiale gia' stampato in carta straccia.
+| File | Indirizzo codificato |
+|---|---|
+| `qr/ducale-qr.*` | `https://www.ducaleimpianti.com/ducale-qr/?utm_source=biglietto&utm_medium=qr` |
+| `qr/elettrica-qr.*` | `https://www.elettricaducale.it/elettrica-qr/?utm_source=biglietto&utm_medium=qr` |
+| `qr/officina-qr.*` | `https://www.elettricaducale.it/officina-qr/?utm_source=biglietto&utm_medium=qr` |
+
+Scelte, tutte deliberate perche' un QR stampato non si corregge piu':
+
+- **QR statico.** Dentro c'e' direttamente l'indirizzo della pagina. I
+  generatori online creano quasi sempre QR *dinamici*, che passano da un loro
+  link di rimbalzo: quando l'abbonamento scade o il servizio chiude, tutto il
+  materiale stampato smette di funzionare.
+- **Correzione d'errore M, 45x45 moduli.** Il biglietto e' carta piatta e
+  pulita; con Q il codice salirebbe a 53x53, piu' fitto a parita' di misura.
+- **Lato minimo in stampa: 20 mm**, margine bianco compreso: sono 0,44 mm per
+  modulo, comodi per qualsiasi telefono. Il margine bianco attorno fa parte del
+  codice e non va tagliato: senza, molti telefoni non lo agganciano.
+- **Nero pieno su bianco.** Niente colori ne' logo al centro.
+- **Verifica automatica.** Lo script rilegge ogni PNG con due lettori
+  indipendenti a sei misure diverse, e si ferma se anche una sola lettura
+  restituisce un indirizzo diverso da quello voluto.
+
+**In tipografia solo dopo che le tre pagine rispondono sui domini veri**, e dopo
+aver scansionato ciascun codice da un telefono atterrando sulla pagina giusta.
+
+### Tracciamento
+
+L'UTM (`utm_source=biglietto`, `utm_medium=qr`) e' nel codice fin da ora perche'
+dopo la stampa non si aggiunge piu'. Da solo pero' non conta niente: e'
+un'etichetta, e oggi le tre pagine non hanno nessuno strumento che la legga.
+Si puo' aggiungere in qualsiasi momento, anche a biglietti gia' stampati: le
+scansioni arriveranno con l'etichetta giusta.
+
+Se in futuro servissero supporti diversi (furgoni, cartelli di cantiere) si fa
+un QR a parte con la sua sorgente, per esempio `utm_source=furgone`, e con
+correzione d'errore Q, adatta a superfici esposte.
 
 ## Da completare
 
