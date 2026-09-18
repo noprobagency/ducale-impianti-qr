@@ -1,3 +1,8 @@
 {
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/card/:path*",      "destination": "/ducale-qr/:path*",    "permanent": false },
+    { "source": "/elettrica/:path*", "destination": "/elettrica-qr/:path*", "permanent": false },
+    { "source": "/officina/:path*",  "destination": "/officina-qr/:path*",  "permanent": false }
+  ]
 }

@@ -3,8 +3,8 @@
 Genera logo e favicon delle landing QR dalle lockup del gruppo.
 
 Eseguire dalla radice del progetto:
-    python3 _source/make-favicons.py                 # tutte e due le aziende
-    python3 _source/make-favicons.py elettrica       # solo una
+    python3 _source/make-favicons.py                 # tutte e tre
+    python3 _source/make-favicons.py officina        # una sola
 
 La sorgente e' un JPEG su fondo bianco: lo sfondo viene reso trasparente,
 poi si ritagliano da soli tre pezzi diversi, perche' servono a cose diverse:
@@ -19,10 +19,12 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# chiave per la riga di comando -> (cartella, che e' anche lo slug in produzione,
+#                                   logo sorgente, nome leggibile)
 AZIENDE = {
-    "card":      ("Logo-Gruppo-Ducale-Impianti.jpg",  "Ducale Impianti"),
-    "elettrica": ("Logo-Gruppo-Elettrica-Ducale.jpg", "Elettrica Ducale"),
-    "officina":  ("Logo-Gruppo-Officina-Carpenteria.png", "Officina di carpenteria"),
+    "ducale":    ("ducale-qr",    "Logo-Gruppo-Ducale-Impianti.jpg",      "Ducale Impianti"),
+    "elettrica": ("elettrica-qr", "Logo-Gruppo-Elettrica-Ducale.jpg",     "Elettrica Ducale"),
+    "officina":  ("officina-qr",  "Logo-Gruppo-Officina-Carpenteria.png", "Officina di carpenteria"),
 }
 
 SOGLIA = 235   # sopra questo livello il pixel e' considerato sfondo
@@ -197,4 +199,4 @@ scelte = sys.argv[1:] or list(AZIENDE)
 for chiave in scelte:
     if chiave not in AZIENDE:
         raise SystemExit(f"Azienda sconosciuta: {chiave}. Valide: {', '.join(AZIENDE)}")
-    genera(chiave, *AZIENDE[chiave])
+    genera(*AZIENDE[chiave])

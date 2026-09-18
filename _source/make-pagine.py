@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC  = ROOT / "card" / "index.html"
+SRC  = ROOT / "ducale-qr" / "index.html"
 
 BLOB_CARD = """.bg i:nth-child(1){ width:min(620px,105vw); aspect-ratio:1; top:-230px; left:-140px; background:color-mix(in srgb, var(--brand-2) 20%, transparent); }
 .bg i:nth-child(2){ width:min(520px,95vw);  aspect-ratio:1; top:-90px;  right:-180px; background:color-mix(in srgb, var(--brand) 20%, transparent); }
@@ -47,7 +47,7 @@ def desks(coppie):
 
 # ── Elettrica Ducale ────────────────────────────────────────────────────────
 ELETTRICA = dict(
-    cartella="elettrica",
+    cartella="elettrica-qr",
     lockup=('<img src="img/logo-lockup.png" alt="Gruppo Elettrica Ducale S.r.l. — '
             'Automazione industriale" width="960" height="371">'),
     uffici=[
@@ -162,7 +162,7 @@ CSS_OFFICINA = """
 """
 
 OFFICINA = dict(
-    cartella="officina",
+    cartella="officina-qr",
     lockup=('<img src="img/logo-lockup.png" alt="Gruppo Elettrica Ducale S.r.l. — '
             'Officina di carpenteria leggera" width="960" height="374">'),
     uffici=[

@@ -4,11 +4,15 @@ Tre pagine statiche sorelle, ognuna raggiunta dal proprio QR code stampato.
 Nessuna dipendenza: niente framework, niente build, niente npm. Si aprono anche
 con un doppio clic sull'`index.html`.
 
-| Cartella | Chi | Destinazione |
+| Cartella | Chi | Indirizzo nel QR |
 |---|---|---|
-| `card/` | Ducale Impianti S.r.l. | `https://www.ducaleimpianti.com/card/` |
-| `elettrica/` | Elettrica Ducale S.r.l. | `https://www.elettricaducale.it/card/` |
-| `officina/` | Officina di carpenteria leggera | `https://www.elettricaducale.it/officina/` |
+| `ducale-qr/` | Ducale Impianti S.r.l. | `https://www.ducaleimpianti.com/ducale-qr/` |
+| `elettrica-qr/` | Elettrica Ducale S.r.l. | `https://www.elettricaducale.it/elettrica-qr/` |
+| `officina-qr/` | Officina di carpenteria leggera | `https://www.elettricaducale.it/officina-qr/` |
+
+**Il nome della cartella e' lo slug in produzione.** Si carica `ducale-qr/` e
+l'indirizzo diventa `.../ducale-qr/`: nessuna traduzione fra i due, nessuna
+occasione di sbagliare in fase di caricamento.
 
 Ducale Impianti ed Elettrica Ducale hanno siti distinti, quindi ogni pagina va
 sul dominio della propria azienda. L'officina e' un reparto di Elettrica Ducale
@@ -18,9 +22,26 @@ cartella a parte.
 In anteprima le tre convivono sullo stesso indirizzo solo perche' e' un unico
 deploy Vercel. Non e' come saranno in produzione.
 
+### Perche' questi slug
+
+Il suffisso `-qr` non collide con niente che WordPress possa generare da solo,
+e tiene distinte le due pagine che stanno sullo stesso dominio. Non era una
+precauzione teorica: `elettricaducale.it/officina/`, il primo candidato per
+l'officina, rispondeva gia' 200. Era la *pagina allegato* di una foto caricata
+col nome "officina": WordPress ne crea una per ogni immagine, usando il nome del
+file come indirizzo. La cartella avrebbe avuto la precedenza, ma se un giorno
+fosse stata rimossa i QR stampati avrebbero mostrato una foto invece di un
+errore.
+
+Gli slug piu' lunghi non costano niente in stampa. Con correzione d'errore Q
+tutti e tre gli indirizzi restano alla versione 4 del QR, 33x33 moduli, identici
+a quelli che si sarebbero avuti con `/card/`.
+
+Verificato il 18 settembre 2026: tutti e tre rispondono 404, quindi sono liberi.
+
 ## Le pagine derivate non si modificano a mano
 
-`card/index.html` e' l'unica sorgente. Le altre due si generano da quella, cosi'
+`ducale-qr/index.html` e' l'unica sorgente. Le altre due si generano da quella, cosi'
 non divergono a ogni giro di correzioni:
 
 ```bash
@@ -30,20 +51,21 @@ python3 _source/make-pagine.py officina     # una sola
 
 Tutto cio' che distingue le tre pagine — dati, colori, uffici, sedi, recapiti —
 sta in `_source/make-pagine.py`. Lo script si ferma con un errore se un testo
-che deve sostituire non esiste piu': se hai cambiato `card/index.html` in un
+che deve sostituire non esiste piu': se hai cambiato `ducale-qr/index.html` in un
 punto che lo riguarda te ne accorgi subito, invece di ritrovarti dati vecchi
 nelle pagine sorelle.
 
-**Quindi: si modifica `card/index.html`, poi si rigenera.** Una modifica fatta
-a mano dentro `elettrica/` o `officina/` viene persa alla prima rigenerazione.
+**Quindi: si modifica `ducale-qr/index.html`, poi si rigenera.** Una modifica
+fatta a mano dentro `elettrica-qr/` o `officina-qr/` viene persa alla prima
+rigenerazione.
 
 ## Cosa caricare
 
-Va online **solo il contenuto della cartella** (`card/`, `elettrica/` oppure
-`officina/`):
+Va online **la cartella intera**, con il suo nome: `ducale-qr/`,
+`elettrica-qr/` oppure `officina-qr/`.
 
 ```
-card/
+ducale-qr/
 ├── index.html
 └── img/
     ├── logo-lockup.png     ← il marchio in testata
@@ -58,13 +80,18 @@ card/
 Ogni cartella ha il proprio `img/`, con logo e favicon della sua azienda.
 
 `_source/` resta in locale e non va mai caricata sull'hosting: contiene i loghi
-sorgente e gli script. Nemmeno `vercel.json` va caricato: serve solo
-all'anteprima.
+sorgente e gli script. Nemmeno `vercel.json` va caricato: serve solo all'anteprima, dove tiene
+anche i reindirizzamenti dai vecchi indirizzi (`/card/`, `/elettrica/`,
+`/officina/`) a quelli nuovi, per i link gia' mandati al cliente.
 
 ## Destinazione sull'hosting
 
-Copiare il contenuto della cartella in `/public_html/<nome-cartella>/`, sulla
-radice del sito WordPress corrispondente.
+Copiare la cartella dentro `/public_html/`, sulla radice del sito WordPress
+corrispondente, in modo che risulti `/public_html/ducale-qr/index.html` e cosi'
+via:
+
+- `ducale-qr/` sull'hosting di `ducaleimpianti.com`
+- `elettrica-qr/` e `officina-qr/` sull'hosting di `elettricaducale.it`
 
 ### Perche' funziona senza toccare WordPress
 
@@ -81,10 +108,10 @@ direttamente da Apache, senza passare dal CMS.
 
 ## Avvertenze
 
-1. **Non creare in WordPress pagine con slug `card` o `officina`.** Manderebbe
-   in conflitto le due cose e vincerebbe WordPress. Verificato il 14 agosto
-   2026: `https://www.ducaleimpianti.com/card/` rispondeva 404, quindi lo slug
-   era libero. Da riverificare su `elettricaducale.it` prima di caricare.
+1. **Non creare in WordPress pagine, articoli o immagini con slug
+   `ducale-qr`, `elettrica-qr` o `officina-qr`.** Vale anche per le immagini:
+   WordPress da' a ogni file caricato un indirizzo col suo nome, ed e' cosi' che
+   `/officina/` risultava gia' occupato.
 2. **Plugin di sicurezza** (Wordfence, iThemes Security, Sucuri) a volte
    bloccano l'esecuzione in cartelle fuori standard. Se l'indirizzo risponde
    403, la causa e' quasi sempre li'.
@@ -96,7 +123,9 @@ direttamente da Apache, senza passare dal CMS.
    canonica del sito, per non aggiungere un redirect prima di mostrare la
    pagina. Verificato: su `ducaleimpianti.com` tutte le varianti rispondono
    `301` verso `https://www.ducaleimpianti.com/`, quindi la forma canonica e'
-   **con `www` e in `https`**. Su `elettricaducale.it` vale lo stesso.
+   **con `www` e in `https`**. Su `elettricaducale.it` vale lo stesso,
+   verificato il 18 settembre 2026. Gli indirizzi nel QR finiscono con la barra:
+   senza, Apache aggiungerebbe comunque un reindirizzamento per arrivarci.
 
 ## Rigenerare logo e favicon
 
@@ -159,9 +188,9 @@ Per distinguere da quale supporto stampato arriva la scansione, si aggiungono i
 parametri direttamente nell'indirizzo del QR, uno diverso per ogni supporto:
 
 ```
-https://www.ducaleimpianti.com/card/?utm_source=qr&utm_medium=print&utm_campaign=biglietti
-https://www.ducaleimpianti.com/card/?utm_source=qr&utm_medium=print&utm_campaign=mezzi
-https://www.ducaleimpianti.com/card/?utm_source=qr&utm_medium=print&utm_campaign=cantieri
+https://www.ducaleimpianti.com/ducale-qr/?utm_source=qr&utm_medium=print&utm_campaign=biglietti
+https://www.ducaleimpianti.com/ducale-qr/?utm_source=qr&utm_medium=print&utm_campaign=mezzi
+https://www.ducaleimpianti.com/ducale-qr/?utm_source=qr&utm_medium=print&utm_campaign=cantieri
 ```
 
 La pagina li ignora: servono solo alla statistica lato server o ad Analytics, se
