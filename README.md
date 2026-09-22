@@ -96,7 +96,7 @@ non uno che punta a un indirizzo che in produzione non esistera' mai.
 | `consegna/ducaleimpianti.com.zip` | hosting Aruba di `ducaleimpianti.com` | `impiantielettrici-qr/` |
 | `consegna/elettricaducale.it.zip` | hosting di `elettricaducale.it` | `quadri-qr/`, `officinacarpenteria-qr/` |
 
-Si estrae dentro `/public_html/`. Si rifanno dopo ogni modifica alle pagine:
+Si estrae nella radice del sito (vedi sotto). Si rifanno dopo ogni modifica alle pagine:
 
 ```bash
 rm -f consegna/*.zip
@@ -106,9 +106,16 @@ zip -qrX consegna/elettricaducale.it.zip quadri-qr officinacarpenteria-qr -x '*.
 
 ## Destinazione sull'hosting
 
-Copiare la cartella dentro `/public_html/`, sulla radice del sito WordPress
-corrispondente, in modo che risulti `/public_html/impiantielettrici-qr/index.html` e cosi'
-via:
+Copiare la cartella nella radice del sito WordPress corrispondente, allo
+stesso livello di `wp-admin`, `wp-content` e `.htaccess` — accanto a WordPress,
+non dentro `wp-content`.
+
+La radice non ha lo stesso nome ovunque. Su molti hosting si chiama
+`public_html`; **su Aruba prende il nome del dominio**: nel File Manager e' la
+cartella `www.ducaleimpianti.com`, e il risultato deve essere
+`www.ducaleimpianti.com/impiantielettrici-qr/index.html`. Le cartelle
+`..._Backup_...` che Aruba mostra accanto sono fuori dal sito: li' la pagina
+non sarebbe raggiungibile.
 
 - `impiantielettrici-qr/` sull'hosting di `ducaleimpianti.com`
 - `quadri-qr/` e `officinacarpenteria-qr/` sull'hosting di `elettricaducale.it`
