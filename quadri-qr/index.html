@@ -143,7 +143,7 @@ h1.mark img{ display:block; width:100%; height:auto; }
 .datum{ display:flex; align-items:center; gap:12px; padding:13px 15px; }
 .datum + .datum{ border-top:1px solid var(--hairline-2); }
 .datum .k{ font:700 10.5px/1 "Lato",sans-serif; letter-spacing:.13em; text-transform:uppercase; color:var(--text-faint); margin-bottom:5px; }
-.datum .v{ font-family:"Lato",sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em; word-break:break-all; }
+.datum .v{ font-family:"Lato",sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em; overflow-wrap:anywhere; }
 .datum .body{ flex:1; min-width:0; }
 .datum .note{ display:flex; gap:6px; align-items:flex-start; margin:7px 0 0; font-size:12.5px; line-height:1.4; color:var(--brand-warn); }
 .datum .note svg{ width:13px; height:13px; flex:none; margin-top:2px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; }
@@ -296,7 +296,7 @@ footer .rule{ height:1px; background:linear-gradient(to right,transparent,var(--
         <div class="datum">
           <div class="body">
             <div class="k">PEC</div>
-            <div class="v" style="font-size:13.5px">elettricaducale@pec.elettricaducale.it</div>
+            <div class="v" style="font-size:13.5px">elettricaducale@<wbr>pec.elettricaducale.it</div>
           </div>
           <button class="copy" type="button" data-copy="elettricaducale@pec.elettricaducale.it" data-name="Indirizzo PEC" aria-label="Copia indirizzo PEC">
             <svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>

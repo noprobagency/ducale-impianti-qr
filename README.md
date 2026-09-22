@@ -87,6 +87,23 @@ definitivi, per i link gia' mandati al cliente. Reindirizza anche i vecchi file
 QR ai nuovi: chi apre un link di una lista precedente riceve il codice giusto,
 non uno che punta a un indirizzo che in produzione non esistera' mai.
 
+## Pacchetti pronti da caricare
+
+`consegna/` contiene un archivio per hosting, gia' con le cartelle giuste dentro:
+
+| Archivio | Va su | Contiene |
+|---|---|---|
+| `consegna/ducaleimpianti.com.zip` | hosting Aruba di `ducaleimpianti.com` | `impiantielettrici-qr/` |
+| `consegna/elettricaducale.it.zip` | hosting di `elettricaducale.it` | `quadri-qr/`, `officinacarpenteria-qr/` |
+
+Si estrae dentro `/public_html/`. Si rifanno dopo ogni modifica alle pagine:
+
+```bash
+rm -f consegna/*.zip
+zip -qrX consegna/ducaleimpianti.com.zip impiantielettrici-qr -x '*.DS_Store'
+zip -qrX consegna/elettricaducale.it.zip quadri-qr officinacarpenteria-qr -x '*.DS_Store'
+```
+
 ## Destinazione sull'hosting
 
 Copiare la cartella dentro `/public_html/`, sulla radice del sito WordPress

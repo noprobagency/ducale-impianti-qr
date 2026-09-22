@@ -96,6 +96,7 @@ ELETTRICA = dict(
         ('href="mailto:info@ducaleimpianti.com"', 'href="mailto:info@elettricaducale.it"'),
         ('<div class="v">02718970300</div>', '<div class="v">00481860302</div>'),
         ('data-copy="02718970300"', 'data-copy="00481860302"'),
+        ('ducaleimpianti@<wbr>pec.ducaleimpianti.com', 'elettricaducale@<wbr>pec.elettricaducale.it'),
         ('ducaleimpianti@pec.ducaleimpianti.com', 'elettricaducale@pec.elettricaducale.it'),
         ('<a href="https://www.ducaleimpianti.com" target="_blank" rel="noopener">',
          '<a href="https://www.elettricaducale.it" target="_blank" rel="noopener">'),
@@ -216,6 +217,7 @@ OFFICINA = dict(
 
         ('<div class="v">02718970300</div>', '<div class="v">00481860302</div>'),
         ('data-copy="02718970300"', 'data-copy="00481860302"'),
+        ('ducaleimpianti@<wbr>pec.ducaleimpianti.com', 'elettricaducale@<wbr>pec.elettricaducale.it'),
         ('ducaleimpianti@pec.ducaleimpianti.com', 'elettricaducale@pec.elettricaducale.it'),
         ('<a href="https://www.ducaleimpianti.com" target="_blank" rel="noopener">',
          '<a href="https://www.elettricaducale.it" target="_blank" rel="noopener">'),
@@ -273,8 +275,11 @@ def genera(cfg):
     out.write_text(html, encoding="utf-8")
 
     residui = [t for t in ("ducaleimpianti", "Ducale Impianti", "02718970300") if t in html]
+    if residui:
+        raise SystemExit(f"{cfg['cartella']}: restano dati di Ducale Impianti {residui}. "
+                         "Pagina scritta ma NON pronta: va aggiunta la sostituzione mancante.")
     print(f"{cfg['cartella']}/index.html — {len(cfg['uffici'])} uffici, "
-          f"residui Ducale Impianti: {residui or 'nessuno'}")
+          f"nessun residuo di Ducale Impianti")
 
 
 scelte = sys.argv[1:] or list(PAGINE)
