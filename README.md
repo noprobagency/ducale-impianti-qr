@@ -248,6 +248,21 @@ Scelte, tutte deliberate perche' un QR stampato non si corregge piu':
 **In tipografia solo dopo che le tre pagine rispondono sui domini veri**, e dopo
 aver scansionato ciascun codice da un telefono atterrando sulla pagina giusta.
 
+### Verifica completa
+
+```bash
+python3 _source/verifica.py
+```
+
+Non si fida degli script che generano: ha la sua lista di cosa deve essere vero
+e controlla tutto contro quella. Per ogni QR decodifica PDF, SVG, EPS e PNG con
+due lettori a cinque misure, confronta il disegno modulo per modulo con quello
+atteso e simula la foto da telefono di un biglietto stampato a 22 mm. Poi apre
+l'indirizzo del QR in produzione e controlla che risponda al primo colpo, che la
+pagina e le immagini siano identiche al byte a quelle del progetto, e che
+telefoni, P. IVA, SDI, PEC, uffici, sito, LinkedIn e mappe siano quelli giusti.
+Da rilanciare dopo ogni modifica.
+
 ### Tracciamento
 
 L'UTM (`utm_source=biglietto`, `utm_medium=qr`) e' nel codice fin da ora perche'
